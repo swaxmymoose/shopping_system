@@ -1,5 +1,6 @@
 package gui;
 
+import domain.Product;
 import java.math.BigDecimal;
 
 /*
@@ -175,6 +176,16 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         System.out.println(productCategory);
         System.out.println(productPrice);
         System.out.println(productQuantityInStock);
+        
+        Product newProduct = new Product();
+        newProduct.setProductId(productId);
+        newProduct.setName(productName);
+        newProduct.setDescription(productDescription);
+        newProduct.setCategory(productCategory);
+        newProduct.setListPrice(productPrice);
+        newProduct.setQuantityInStock(productQuantityInStock);
+        
+        System.out.println(newProduct);
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
