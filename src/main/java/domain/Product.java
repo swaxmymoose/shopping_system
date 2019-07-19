@@ -19,6 +19,17 @@ public class Product {
     private BigDecimal listPrice;
     private BigDecimal quantityInStock;
 
+    public Product(String productId, String name, String description, String category, BigDecimal listPrice, BigDecimal quantityInStock) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.listPrice = listPrice;
+        this.quantityInStock = quantityInStock;
+    }
+    
+    public Product() {}
+    
     @Override
     public String toString() {
         return "Product{" + "productId=" + productId + ", name=" + name + ", description=" + description + ", category=" + category + ", listPrice=" + listPrice + ", quantityInStock=" + quantityInStock + '}';
