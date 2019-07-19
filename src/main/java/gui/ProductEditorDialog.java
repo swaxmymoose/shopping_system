@@ -1,5 +1,7 @@
 package gui;
 
+import java.math.BigDecimal;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,6 +20,7 @@ public class ProductEditorDialog extends javax.swing.JDialog {
     public ProductEditorDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cbProductCategory.setEditable(true);
     }
 
     /**
@@ -29,68 +32,55 @@ public class ProductEditorDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        lblProductId = new javax.swing.JLabel();
+        txtProductId = new javax.swing.JTextField();
+        lblProductName = new javax.swing.JLabel();
+        txtProductName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtDescription = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        cbCategory = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        txtPrice = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtQuantityInStock = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
+        txtProductDescription = new javax.swing.JTextArea();
+        lblProductDescription = new javax.swing.JLabel();
+        lblProductCategory = new javax.swing.JLabel();
+        cbProductCategory = new javax.swing.JComboBox<>();
+        lblProductPrice = new javax.swing.JLabel();
+        txtProductPrice = new javax.swing.JTextField();
+        lblQuantityInStock = new javax.swing.JLabel();
+        txtProductQuantityInStock = new javax.swing.JTextField();
+        btnProductSave = new javax.swing.JButton();
+        btnProductCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Product ID:");
+        lblProductId.setText("Product ID:");
 
-        txtID.addActionListener(new java.awt.event.ActionListener() {
+        lblProductName.setText("Product Name:");
+
+        txtProductDescription.setColumns(20);
+        txtProductDescription.setRows(5);
+        jScrollPane1.setViewportView(txtProductDescription);
+
+        lblProductDescription.setText("Product Description:");
+
+        lblProductCategory.setText("Category:");
+
+        cbProductCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblProductPrice.setText("Price:");
+
+        lblQuantityInStock.setText("Quantity in Stock:");
+
+        btnProductSave.setText("Save");
+        btnProductSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
+                btnProductSaveActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Product Name:");
-
-        txtDescription.setColumns(20);
-        txtDescription.setRows(5);
-        jScrollPane1.setViewportView(txtDescription);
-
-        jLabel3.setText("Product Description:");
-
-        jLabel4.setText("Category:");
-
-        cbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel5.setText("Price:");
-
-        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+        btnProductCancel.setText("Cancel");
+        btnProductCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPriceActionPerformed(evt);
+                btnProductCancelActionPerformed(evt);
             }
         });
-
-        jLabel6.setText("Quantity in Stock:");
-
-        txtQuantityInStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantityInStockActionPerformed(evt);
-            }
-        });
-
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
-        btnCancel.setText("Cancel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,37 +91,35 @@ public class ProductEditorDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(lblProductName, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblProductId, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName)
-                            .addComponent(txtID)))
+                            .addComponent(txtProductName)
+                            .addComponent(txtProductId)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(lblProductDescription)
+                            .addComponent(lblProductCategory, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(cbProductCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
+                            .addComponent(lblQuantityInStock)
+                            .addComponent(lblProductPrice))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrice)
-                            .addComponent(txtQuantityInStock)))
+                            .addComponent(txtProductPrice)
+                            .addComponent(txtProductQuantityInStock)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProductSave, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnProductCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -139,53 +127,59 @@ public class ProductEditorDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblProductId)
+                    .addComponent(txtProductId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblProductName)
+                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblProductDescription)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(cbProductCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProductCategory))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblProductPrice)
+                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtQuantityInStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblQuantityInStock)
+                    .addComponent(txtProductQuantityInStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnCancel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnProductSave)
+                    .addComponent(btnProductCancel))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+    private void btnProductSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
+        String productId = txtProductId.getText();
+        String productName = txtProductName.getText();
+        String productDescription = txtProductDescription.getText();
+        String productCategory = cbProductCategory.getSelectedItem().toString();
+        BigDecimal productPrice = new BigDecimal(txtProductPrice.getText());
+        BigDecimal productQuantityInStock = new BigDecimal(txtProductQuantityInStock.getText());
+     
+        
+        System.out.println(productId);
+        System.out.println(productName);
+        System.out.println(productDescription);
+        System.out.println(productCategory);
+        System.out.println(productPrice);
+        System.out.println(productQuantityInStock);
+    }//GEN-LAST:event_btnProductSaveActionPerformed
 
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
-
-    private void txtQuantityInStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityInStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantityInStockActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSaveActionPerformed
+    private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnProductCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,20 +224,20 @@ public class ProductEditorDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cbCategory;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton btnProductCancel;
+    private javax.swing.JButton btnProductSave;
+    private javax.swing.JComboBox<String> cbProductCategory;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtDescription;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQuantityInStock;
+    private javax.swing.JLabel lblProductCategory;
+    private javax.swing.JLabel lblProductDescription;
+    private javax.swing.JLabel lblProductId;
+    private javax.swing.JLabel lblProductName;
+    private javax.swing.JLabel lblProductPrice;
+    private javax.swing.JLabel lblQuantityInStock;
+    private javax.swing.JTextArea txtProductDescription;
+    private javax.swing.JTextField txtProductId;
+    private javax.swing.JTextField txtProductName;
+    private javax.swing.JTextField txtProductPrice;
+    private javax.swing.JTextField txtProductQuantityInStock;
     // End of variables declaration//GEN-END:variables
 }
