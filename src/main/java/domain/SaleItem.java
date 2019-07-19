@@ -17,6 +17,14 @@ public class SaleItem {
     private BigDecimal salePrice;
     private Product product;
 
+    public SaleItem(BigDecimal quantityPurchased, BigDecimal salePrice, Product product) {
+        this.quantityPurchased = quantityPurchased;
+        this.salePrice = salePrice;
+        this.product = product;
+    }
+    
+    public SaleItem(){}
+
      @Override
     public String toString() {
         return "SaleItem{" + "quantityPurchased=" + quantityPurchased + ", salePrice=" + salePrice + ", product=" + product + '}';
