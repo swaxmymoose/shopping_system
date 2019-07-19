@@ -28,7 +28,7 @@ public class Product {
         this.quantityInStock = quantityInStock;
     }
     
-    public Product() {}
+    public Product(){}
     
     @Override
     public String toString() {

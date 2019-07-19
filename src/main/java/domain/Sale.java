@@ -20,6 +20,16 @@ public class Sale {
     private String status;
     private Customer customer;
     private ArrayList<SaleItem> items;
+
+    public Sale(String saleId, LocalDate date, String status, Customer customer, ArrayList<SaleItem> items) {
+        this.saleId = saleId;
+        this.date = date;
+        this.status = status;
+        this.customer = customer;
+        this.items = items;
+    }
+    
+    public Sale(){}
     
     public BigDecimal getTotal() {
         BigDecimal total = new BigDecimal(0);

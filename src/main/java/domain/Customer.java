@@ -18,6 +18,18 @@ public class Customer {
     private String emailAddress;
     private String shippingAddress;
 
+    public Customer(Integer customerId, String username, String firstName, String surname, String password, String emailAddress, String shippingAddress) {
+        this.customerId = customerId;
+        this.username = username;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.shippingAddress = shippingAddress;
+    }
+
+    public Customer(){}
+    
     @Override
     public String toString() {
         return "Customer{" + "customerID=" + customerId + ", username=" + username + ", firstName=" + firstName + ", surname=" + surname + ", password=" + password + ", emailAddress=" + emailAddress + ", shippingAddress=" + shippingAddress + '}';
