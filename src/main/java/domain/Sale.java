@@ -22,11 +22,15 @@ public class Sale {
     private ArrayList<SaleItem> items;
     
     public BigDecimal getTotal() {
-        throw new UnsupportedOperationException();
+        BigDecimal total = new BigDecimal(0);
+        for(SaleItem item : items) {
+            total = total.add(item.getItemTotal());
+        }
+        return total;
     }
     
     public void addItem(SaleItem item) {
-        throw new UnsupportedOperationException();
+        items.add(item);
     }
 
     @Override
