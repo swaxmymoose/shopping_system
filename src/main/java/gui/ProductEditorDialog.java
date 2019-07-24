@@ -1,5 +1,6 @@
 package gui;
 
+import dao.ProductCollectionsDAO;
 import domain.Product;
 import java.math.BigDecimal;
 
@@ -14,6 +15,8 @@ import java.math.BigDecimal;
  * @author rofth173
  */
 public class ProductEditorDialog extends javax.swing.JDialog {
+    
+    private ProductCollectionsDAO dao = new ProductCollectionsDAO();
 
     /**
      * Creates new form ProductEditorDialog
@@ -168,7 +171,7 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         String productCategory = cbProductCategory.getSelectedItem().toString();
         BigDecimal productPrice = new BigDecimal(txtProductPrice.getText());
         BigDecimal productQuantityInStock = new BigDecimal(txtProductQuantityInStock.getText());
-     
+        
         
         System.out.println(productId);
         System.out.println(productName);
@@ -185,7 +188,8 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         newProduct.setListPrice(productPrice);
         newProduct.setQuantityInStock(productQuantityInStock);
         
-        System.out.println(newProduct);
+        dao.saveProduct(newProduct);
+        dispose();
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
