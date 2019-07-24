@@ -95,19 +95,15 @@ public class MainMenuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnAddNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewProductActionPerformed
-        // create the dialog instance
-        // the first parameter the parent window, and the second is the modal status
         ProductEditorDialog dialog = new ProductEditorDialog(this, true);
-
-        // centre the dialog on the parent window
         dialog.setLocationRelativeTo(this);
-
-        // make the dialog visible
         dialog.setVisible(true);
     }//GEN-LAST:event_btnAddNewProductActionPerformed
 
     private void btnViewProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProductsActionPerformed
-        throw new UnsupportedOperationException("not implemented yet");
+        ViewProductsDialog dialog = new ViewProductsDialog(this, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnViewProductsActionPerformed
 
     /**
