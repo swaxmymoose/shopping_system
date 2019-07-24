@@ -76,4 +76,11 @@ public class ProductCollectionsDAOTest {
         assertFalse("Ensure that the product does not exist", dao.getProducts().contains(prodOne));
     }
     
+    @Test
+    public void testGetCategories() {
+        assertTrue("Ensure that the category is saving", dao.getCategories().contains(prodOne.getCategory()));
+        assertTrue("Ensure that the category is saving", dao.getCategories().contains(prodTwo.getCategory()));     
+        assertTrue("Ensure that list contains correct amount of categories", dao.getCategories().size() == 2);    
+    }
+    
 }

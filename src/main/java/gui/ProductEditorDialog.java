@@ -2,7 +2,9 @@ package gui;
 
 import dao.ProductCollectionsDAO;
 import domain.Product;
+import gui.helpers.SimpleListModel;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +19,8 @@ import java.math.BigDecimal;
 public class ProductEditorDialog extends javax.swing.JDialog {
     
     private ProductCollectionsDAO dao = new ProductCollectionsDAO();
+    SimpleListModel myModel = new SimpleListModel();
+    Collection collection = dao.getCategories();
 
     /**
      * Creates new form ProductEditorDialog
@@ -25,6 +29,8 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         cbProductCategory.setEditable(true);
+        myModel.updateItems(collection);
+        cbProductCategory.setModel(myModel);
     }
 
     /**

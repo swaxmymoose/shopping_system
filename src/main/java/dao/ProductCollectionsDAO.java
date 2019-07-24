@@ -30,4 +30,14 @@ public class ProductCollectionsDAO {
     public void deleteProduct(Product p) {
         products.remove(p);
     }
+    
+    public Collection getCategories() {
+        ArrayList<String> categoryList = new ArrayList();
+        for(Product p : products) {
+            if(!categoryList.contains(p.getCategory())) {
+                categoryList.add(p.getCategory());
+            }
+        }
+        return categoryList;
+    }
 }
