@@ -5,11 +5,20 @@
  */
 package gui;
 
+import dao.ProductCollectionsDAO;
+import gui.helpers.SimpleListModel;
+import java.util.Collection;
+
 /**
  *
  * @author rofth173
  */
 public class ViewProductsDialog extends javax.swing.JDialog {
+    
+    private ProductCollectionsDAO dao = new ProductCollectionsDAO();
+    SimpleListModel myModel = new SimpleListModel();
+    Collection collection = dao.getProducts();
+    
 
     /**
      * Creates new form ViewProductsDialog
@@ -17,6 +26,8 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     public ViewProductsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        myModel.updateItems(collection);
+        lstProducts.setModel(myModel);
     }
 
     /**
