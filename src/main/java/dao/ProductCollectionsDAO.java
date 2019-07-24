@@ -6,14 +6,17 @@
 package dao;
 
 import domain.Product;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+
 
 /**
  *
  * @author rofth173
  */
-public class ProductDAO {
+public class ProductCollectionsDAO {
+    
     static Collection<Product> products = new ArrayList();
     
     public void saveProduct(Product p) {
