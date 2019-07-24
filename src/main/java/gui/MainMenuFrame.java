@@ -5,6 +5,7 @@
  */
 package gui;
 
+
 /**
  *
  * @author rofth173
@@ -39,10 +40,25 @@ public class MainMenuFrame extends javax.swing.JFrame {
         lblProductAdministration.setText("Product Administration");
 
         btnAddNewProduct.setText("Add a New Product");
+        btnAddNewProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNewProductActionPerformed(evt);
+            }
+        });
 
         btnViewProducts.setText("View Products");
+        btnViewProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewProductsActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,6 +89,26 @@ public class MainMenuFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnAddNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewProductActionPerformed
+        // create the dialog instance
+        // the first parameter the parent window, and the second is the modal status
+        ProductEditorDialog dialog = new ProductEditorDialog(this, true);
+
+        // centre the dialog on the parent window
+        dialog.setLocationRelativeTo(this);
+
+        // make the dialog visible
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnAddNewProductActionPerformed
+
+    private void btnViewProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProductsActionPerformed
+        throw new UnsupportedOperationException("not implemented yet");
+    }//GEN-LAST:event_btnViewProductsActionPerformed
 
     /**
      * @param args the command line arguments
