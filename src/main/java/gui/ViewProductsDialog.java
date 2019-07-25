@@ -6,7 +6,7 @@
 package gui;
 
 import dao.ProductCollectionsDAO;
-import gui.helpers.SimpleListModel;
+import helpers.SimpleListModel;
 import java.util.Collection;
 
 /**

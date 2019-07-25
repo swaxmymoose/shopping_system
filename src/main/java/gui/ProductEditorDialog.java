@@ -2,7 +2,7 @@ package gui;
 
 import dao.ProductCollectionsDAO;
 import domain.Product;
-import gui.helpers.SimpleListModel;
+import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.Collection;
 
