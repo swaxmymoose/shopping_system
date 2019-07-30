@@ -1,0 +1,37 @@
+@startuml
+@startuml
+' use strict UML mode
+skinparam style strictuml
+
+title Viewing Product - Sequence Diagram
+
+actor User
+participant "MainMenu" <<dialog>>
+
+
+
+
+
+User -> MainMenu++ : clicks 'view products'
+
+create ViewProducts <<dialog>>
+MainMenu -> ViewProducts : contruct
+ViewProducts ++
+
+create ProductDAO <<DAO>>
+ViewProducts -> ProductDAO : construct
+
+
+
+
+ViewProducts -> ProductDAO : getProducts() : products
+ViewProducts -> ViewProducts : set GUI to display products
+ViewProducts--
+
+User -> ViewProducts++ : clicks 'close'
+ViewProducts -> ViewProducts : dispose()
+destroy ViewProducts
+ViewProducts--
+
+@enduml
+

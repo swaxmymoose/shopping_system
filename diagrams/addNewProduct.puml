@@ -1,3 +1,43 @@
 @startuml
-A -> B : doStuff()
+' use strict UML mode
+skinparam style strictuml
+
+title Adding Product - Sequence Diagram
+
+actor User
+participant "MainMenu" <<dialog>>
+
+
+
+
+
+
+User -> MainMenu++ : clicks 'add product'
+
+create ProductEditor <<dialog>>
+MainMenu -> ProductEditor : contruct
+ProductEditor ++
+
+create ProductDAO <<DAO>>
+ProductEditor -> ProductDAO : construct
+ProductEditor--
+
+User -> ProductEditor++ : enters product detials
+ProductEditor --
+User -> ProductEditor++ : clicks 'save'
+
+ProductEditor -> ProductEditor : get product details from GUI components
+
+create Product <<domain>>
+ProductEditor -> Product : construct
+ProductEditor -> Product++ : set details
+Product--
+
+ProductEditor -> ProductDAO++ : saveProduct(newProduct)
+ProductDAO--
+
+ProductEditor -> ProductEditor : dispose()
+destroy ProductEditor
+ProductEditor--
+
 @enduml
