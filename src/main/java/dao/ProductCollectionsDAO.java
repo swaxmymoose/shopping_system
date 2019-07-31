@@ -7,7 +7,9 @@ package dao;
 
 import domain.Product;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 
 /**
@@ -17,9 +19,15 @@ import java.util.HashSet;
 public class ProductCollectionsDAO {
     
     static Collection<Product> products = new HashSet();
+    static Map<String, Product> idToProducts = new HashMap();
+
+    public Product searchProductById(String id) {
+        return idToProducts.get(id);
+    }
     
     public void saveProduct(Product p) {
         products.add(p);
+        idToProducts.put(p.getProductId(), p);
     }
     
     public Collection<Product> getProducts() {
