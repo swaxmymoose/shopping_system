@@ -6,9 +6,8 @@
 package dao;
 
 import domain.Product;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 
 /**
@@ -17,7 +16,7 @@ import java.util.Collection;
  */
 public class ProductCollectionsDAO {
     
-    static Collection<Product> products = new ArrayList();
+    static Collection<Product> products = new HashSet();
     
     public void saveProduct(Product p) {
         products.add(p);
@@ -32,12 +31,10 @@ public class ProductCollectionsDAO {
     }
     
     public Collection getCategories() {
-        ArrayList<String> categoryList = new ArrayList();
+        Collection<String> categorySet = new HashSet();
         for(Product p : products) {
-            if(!categoryList.contains(p.getCategory())) {
-                categoryList.add(p.getCategory());
-            }
+            categorySet.add(p.getCategory());
         }
-        return categoryList;
+        return categorySet;
     }
 }
