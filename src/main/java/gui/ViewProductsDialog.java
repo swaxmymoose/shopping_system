@@ -47,7 +47,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
         lblViewProducts = new javax.swing.JLabel();
         btnDeleteProduct = new javax.swing.JButton();
         lblSearchById = new javax.swing.JLabel();
-        txtSearchField = new javax.swing.JTextField();
+        txtSearchId = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -74,6 +74,11 @@ public class ViewProductsDialog extends javax.swing.JDialog {
         lblSearchById.setText("Search by ID");
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,7 +96,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSearchById)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearchField)
+                        .addComponent(txtSearchId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch)))
                 .addContainerGap())
@@ -104,7 +109,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSearchById)
-                    .addComponent(txtSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearchId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch))
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
@@ -134,6 +139,12 @@ public class ViewProductsDialog extends javax.swing.JDialog {
             } 
         }
     }//GEN-LAST:event_btnDeleteProductActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String idToSearch = txtSearchId.getText();
+        Product foundProduct = dao.GetProductById(idToSearch);
+        myModel.updateItems(foundProduct);
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +196,6 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblSearchById;
     private javax.swing.JLabel lblViewProducts;
     private javax.swing.JList<Product> lstProducts;
-    private javax.swing.JTextField txtSearchField;
+    private javax.swing.JTextField txtSearchId;
     // End of variables declaration//GEN-END:variables
 }

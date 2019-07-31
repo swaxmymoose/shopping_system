@@ -21,7 +21,7 @@ public class ProductCollectionsDAO {
     static Collection<Product> products = new HashSet();
     static Map<String, Product> idToProducts = new HashMap();
 
-    public Product searchProductById(String id) {
+    public Product GetProductById(String id) {
         return idToProducts.get(id);
     }
     
