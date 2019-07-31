@@ -18,8 +18,11 @@ import javax.swing.JOptionPane;
 public class ViewProductsDialog extends javax.swing.JDialog {
     
     private ProductCollectionsDAO dao = new ProductCollectionsDAO();
-    SimpleListModel myModel = new SimpleListModel();
-    Collection collection = dao.getProducts();
+    SimpleListModel myModelProducts = new SimpleListModel();
+    Collection allProducts = dao.getProducts();
+    
+    SimpleListModel myModelCategories = new SimpleListModel();
+    Collection allCategories = dao.getCategories();
     
 
     /**
@@ -28,8 +31,11 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     public ViewProductsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        myModel.updateItems(collection);
-        lstProducts.setModel(myModel);
+        myModelProducts.updateItems(allProducts);
+        lstProducts.setModel(myModelProducts);
+        
+        myModelCategories.updateItems(allCategories);
+        cmbCategory.setModel(myModelCategories);
     }
 
     /**
@@ -85,6 +91,11 @@ public class ViewProductsDialog extends javax.swing.JDialog {
         lblCategoryFilter.setText("Category Filter");
 
         cmbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +161,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
             if (result == JOptionPane.YES_OPTION) {
                 dao.deleteProduct(product);
                 lstProducts.clearSelection();
-                myModel.updateItems(dao.getProducts());
+                myModelProducts.updateItems(dao.getProducts());
             } 
         }
     }//GEN-LAST:event_btnDeleteProductActionPerformed
@@ -158,8 +169,14 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String idToSearch = txtSearchId.getText();
         Product foundProduct = dao.GetProductById(idToSearch);
-        myModel.updateItems(foundProduct);
+        myModelProducts.updateItems(foundProduct);
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void cmbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoryActionPerformed
+        String selectedCategory = (String)cmbCategory.getSelectedItem();
+        Collection productsToDisplay = dao.getProductsByCategory(selectedCategory);
+        myModelProducts.updateItems(productsToDisplay);
+    }//GEN-LAST:event_cmbCategoryActionPerformed
 
     /**
      * @param args the command line arguments
