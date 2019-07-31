@@ -24,7 +24,7 @@ public class ProductCollectionsDAO {
     static Map<String, Product> idToProduct = new HashMap();
     static Multimap<String, Product> categoryToProducts = ArrayListMultimap.create();
 
-    public Product GetProductById(String id) {
+    public Product getProductById(String id) {
         return idToProduct.get(id);
     }
     

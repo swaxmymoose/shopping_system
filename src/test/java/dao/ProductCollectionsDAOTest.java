@@ -83,4 +83,16 @@ public class ProductCollectionsDAOTest {
         assertTrue("Ensure that list contains correct amount of categories", dao.getCategories().size() == 2);    
     }
     
+    @Test
+    public void getProductById() {
+        assertTrue("Ensure that searching for a saved product with id returns the correct product", dao.getProductById("1") == prodOne);
+        assertNull("Ensure that searching for non existant product returns null", dao.getProductById("3"));      
+    }
+    
+    @Test
+    public void getProductsByCategory() {
+        assertTrue("Ensure that it returns correct product", dao.getProductsByCategory("cat1").contains(prodOne)); //WHY IS THIS FAILING????
+        assertTrue("Ensure that non existant category returns empty", dao.getProductsByCategory("cat3").isEmpty());   
+    }
+    
 }

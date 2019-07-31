@@ -168,7 +168,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String idToSearch = txtSearchId.getText();
-        Product foundProduct = dao.GetProductById(idToSearch);
+        Product foundProduct = dao.getProductById(idToSearch);
         myModelProducts.updateItems(foundProduct);
     }//GEN-LAST:event_btnSearchActionPerformed
 
