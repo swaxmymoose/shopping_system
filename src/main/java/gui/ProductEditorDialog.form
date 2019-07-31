@@ -46,7 +46,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <Component id="cbProductCategory" max="32767" attributes="0"/>
+                          <Component id="cmbProductCategory" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -92,7 +92,7 @@
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cbProductCategory" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbProductCategory" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblProductCategory" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -152,7 +152,7 @@
         <Property name="text" type="java.lang.String" value="Category:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbProductCategory">
+    <Component class="javax.swing.JComboBox" name="cmbProductCategory">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
