@@ -49,6 +49,8 @@ public class ViewProductsDialog extends javax.swing.JDialog {
         lblSearchById = new javax.swing.JLabel();
         txtSearchId = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
+        lblCategoryFilter = new javax.swing.JLabel();
+        cmbCategory = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,6 +82,10 @@ public class ViewProductsDialog extends javax.swing.JDialog {
             }
         });
 
+        lblCategoryFilter.setText("Category Filter");
+
+        cmbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,11 +100,16 @@ public class ViewProductsDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDeleteProduct))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSearchById)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCategoryFilter)
+                            .addComponent(lblSearchById))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearchId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtSearchId)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSearch))
+                            .addComponent(cmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,8 +122,12 @@ public class ViewProductsDialog extends javax.swing.JDialog {
                     .addComponent(lblSearchById)
                     .addComponent(txtSearchId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch))
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCategoryFilter)
+                    .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProductViewClose)
@@ -192,7 +207,9 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnDeleteProduct;
     private javax.swing.JButton btnProductViewClose;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cmbCategory;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCategoryFilter;
     private javax.swing.JLabel lblSearchById;
     private javax.swing.JLabel lblViewProducts;
     private javax.swing.JList<Product> lstProducts;
