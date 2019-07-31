@@ -44,6 +44,9 @@ public class ProductCollectionsDAO {
     
     public void deleteProduct(Product p) {
         products.remove(p);
+        idToProduct.remove(p.getProductId());
+        categoryToProducts.remove(p.getCategory(), p);
+        
     }
     
     public Collection getCategories() {
