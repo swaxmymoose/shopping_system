@@ -6,8 +6,10 @@
 package gui;
 
 import dao.ProductCollectionsDAO;
+import domain.Product;
 import helpers.SimpleListModel;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,14 +45,10 @@ public class ViewProductsDialog extends javax.swing.JDialog {
         lstProducts = new javax.swing.JList<>();
         btnProductViewClose = new javax.swing.JButton();
         lblViewProducts = new javax.swing.JLabel();
+        btnDeleteProduct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lstProducts.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(lstProducts);
 
         btnProductViewClose.setText("Close");
@@ -63,6 +61,13 @@ public class ViewProductsDialog extends javax.swing.JDialog {
         lblViewProducts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblViewProducts.setText("View Products");
 
+        btnDeleteProduct.setText("Delete");
+        btnDeleteProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteProductActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +79,8 @@ public class ViewProductsDialog extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnProductViewClose)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDeleteProduct)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,7 +91,9 @@ public class ViewProductsDialog extends javax.swing.JDialog {
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnProductViewClose)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProductViewClose)
+                    .addComponent(btnDeleteProduct))
                 .addContainerGap())
         );
 
@@ -95,6 +103,19 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     private void btnProductViewCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductViewCloseActionPerformed
         dispose();
     }//GEN-LAST:event_btnProductViewCloseActionPerformed
+
+    private void btnDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductActionPerformed
+        if(!lstProducts.isSelectionEmpty()) {
+            Product product = lstProducts.getSelectedValue();
+            JOptionPane JOptionPane = new JOptionPane();
+            int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete " + product.toString());
+            if (result == JOptionPane.YES_OPTION) {
+                dao.deleteProduct(product);
+                lstProducts.clearSelection();
+                myModel.updateItems(dao.getProducts());
+            } 
+        }
+    }//GEN-LAST:event_btnDeleteProductActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,9 +160,10 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteProduct;
     private javax.swing.JButton btnProductViewClose;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblViewProducts;
-    private javax.swing.JList<String> lstProducts;
+    private javax.swing.JList<Product> lstProducts;
     // End of variables declaration//GEN-END:variables
 }
