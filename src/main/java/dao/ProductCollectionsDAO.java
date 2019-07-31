@@ -5,6 +5,8 @@
  */
 package dao;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import domain.Product;
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,15 +21,21 @@ import java.util.Map;
 public class ProductCollectionsDAO {
     
     static Collection<Product> products = new HashSet();
-    static Map<String, Product> idToProducts = new HashMap();
+    static Map<String, Product> idToProduct = new HashMap();
+    static Multimap<String, Product> categoryToProducts = ArrayListMultimap.create();
 
     public Product GetProductById(String id) {
-        return idToProducts.get(id);
+        return idToProduct.get(id);
+    }
+    
+    public Collection<Product> getProductsByCategory(String category) {
+        return categoryToProducts.get(category);
     }
     
     public void saveProduct(Product p) {
         products.add(p);
-        idToProducts.put(p.getProductId(), p);
+        idToProduct.put(p.getProductId(), p);
+        categoryToProducts.put(p.getCategory(), p);
     }
     
     public Collection<Product> getProducts() {

@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
    testImplementation group: 'junit', name: 'junit', version: '4.+'
+   implementation group: 'com.google.guava', name: 'guava', version: '28.0-jre'
 }
 
 run {
@@ -15,3 +16,5 @@ run {
 }
 
 mainClassName = "Administration"
+
+
