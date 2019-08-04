@@ -18,30 +18,35 @@ import java.util.Map;
  *
  * @author rofth173
  */
-public class ProductCollectionsDAO {
+public class ProductCollectionsDAO implements DAO {
     
     static Collection<Product> products = new HashSet();
     static Map<String, Product> idToProduct = new HashMap();
     static Multimap<String, Product> categoryToProducts = ArrayListMultimap.create();
 
+    @Override
     public Product getProductById(String id) {
         return idToProduct.get(id);
     }
     
+    @Override
     public Collection<Product> getProductsByCategory(String category) {
         return categoryToProducts.get(category);
     }
     
+    @Override
     public void saveProduct(Product p) {
         products.add(p);
         idToProduct.put(p.getProductId(), p);
         categoryToProducts.put(p.getCategory(), p);
     }
     
+    @Override
     public Collection<Product> getProducts() {
         return products;
     }
     
+    @Override
     public void deleteProduct(Product p) {
         products.remove(p);
         idToProduct.remove(p.getProductId());
@@ -49,6 +54,7 @@ public class ProductCollectionsDAO {
         
     }
     
+    @Override
     public Collection getCategories() {
         Collection<String> categorySet = new HashSet();
         for(Product p : products) {
