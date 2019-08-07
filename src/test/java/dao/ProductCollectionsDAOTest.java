@@ -18,7 +18,6 @@ import static org.junit.Assert.*;
  * @author rofth173
  */
 public class ProductCollectionsDAOTest {
-    
     private ProductCollectionsDAO dao = new ProductCollectionsDAO();
     private Product prodOne;
     private Product prodTwo;
@@ -29,12 +28,9 @@ public class ProductCollectionsDAOTest {
     
     @Before
     public void setUp() {
-        this.prodOne = new Product("1", "name1", "cat1", "desc1",
-        new BigDecimal("11.00"), new BigDecimal("22.00"));
-        this.prodTwo = new Product("2", "name2", "cat2", "desc2",
-        new BigDecimal("33.00"), new BigDecimal("44.00"));
-        this.prodThree = new Product("3", "name3", "cat3", "desc3",
-        new BigDecimal("55.00"), new BigDecimal("66.00"));
+        this.prodOne = new Product("1", "name1","desc1","cat1",new BigDecimal("11.00"), new BigDecimal("22.00"));
+        this.prodTwo = new Product("2", "name2","desc2","cat2",new BigDecimal("33.00"), new BigDecimal("44.00"));
+        this.prodThree = new Product("3", "name3","desc3","cat3",new BigDecimal("55.00"), new BigDecimal("66.00"));
         // save the products
         dao.saveProduct(prodOne);
         dao.saveProduct(prodTwo);
@@ -84,13 +80,13 @@ public class ProductCollectionsDAOTest {
     }
     
     @Test
-    public void getProductById() {
+    public void testGetProductById() {
         assertTrue("Ensure that searching for a saved product with id returns the correct product", dao.getProductById("1") == prodOne);
         assertNull("Ensure that searching for non existant product returns null", dao.getProductById("3"));      
     }
     
     @Test
-    public void getProductsByCategory() {
+    public void testGetProductsByCategory() {
         assertTrue("Ensure that it returns correct product", dao.getProductsByCategory("cat1").contains(prodOne)); //WHY IS THIS FAILING????
         assertTrue("Ensure that non existant category returns empty", dao.getProductsByCategory("cat3").isEmpty());   
     }

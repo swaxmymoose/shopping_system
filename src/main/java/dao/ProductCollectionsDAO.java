@@ -31,6 +31,7 @@ public class ProductCollectionsDAO implements DAO {
     
     @Override
     public Collection<Product> getProductsByCategory(String category) {
+        System.out.println(categoryToProducts.get(category));
         return categoryToProducts.get(category);
     }
     
@@ -50,7 +51,7 @@ public class ProductCollectionsDAO implements DAO {
     public void deleteProduct(Product p) {
         products.remove(p);
         idToProduct.remove(p.getProductId());
-        categoryToProducts.remove(p.getCategory(), p);
+        categoryToProducts.remove(p.getCategory(), p); //look at what should be happening with this
         
     }
     
