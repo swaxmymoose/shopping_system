@@ -20,9 +20,9 @@ import java.util.Map;
  */
 public class ProductCollectionsDAO implements DAO {
     
-    static Collection<Product> products = new HashSet();
-    static Map<String, Product> idToProduct = new HashMap();
-    static Multimap<String, Product> categoryToProducts = ArrayListMultimap.create();
+    private static Collection<Product> products = new HashSet();
+    private static Map<String, Product> idToProduct = new HashMap();
+    private static Multimap<String, Product> categoryToProducts = ArrayListMultimap.create();
 
     @Override
     public Product getProductById(String id) {
