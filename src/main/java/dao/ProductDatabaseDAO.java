@@ -39,7 +39,40 @@ public class ProductDatabaseDAO implements DAO {
 
     @Override
     public Product getProductById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "select * from student where id = ?";
+        
+        try {
+            // get a connection to the database
+            Connection dbCon = DbConnection.getConnection(URI);
+            
+            // create the statement
+            PreparedStatement stmt = dbCon.prepareStatement(sql);
+            
+            // set the parameter
+            stmt.setString(1, id);
+
+            // execute the query
+            ResultSet rs = stmt.executeQuery();
+
+            // query only returns a single result, so use 'if' instead of 'while'
+            if (rs.next()) {
+                String productId = rs.getString("ProductId");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                String category = rs.getString("category");
+                BigDecimal listprice = rs.getBigDecimal("listprice");
+                BigDecimal quantityInStock = rs.getBigDecimal("quantityInStock");
+
+                return new Product(productId, name, description, category, listprice, quantityInStock);
+
+            } else {
+                // no student matches given ID so return null
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
