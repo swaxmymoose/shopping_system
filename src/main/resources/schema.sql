@@ -13,6 +13,6 @@ create table Product (
     name varchar(50),
     description varchar(100),
     category varchar(50),
-    listprice decimal(5,2),
+    listprice decimal(5,2), /* maybe increase 5 to 10? */
     quantityInStock int
 );
