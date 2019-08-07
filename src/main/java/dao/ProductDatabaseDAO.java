@@ -124,7 +124,29 @@ public class ProductDatabaseDAO implements DAO {
 
     @Override
     public void saveProduct(Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String sql="insert into student (id, name, mark) values (?,?,?,?,?,?)";
+        
+        try {
+            // get a connection to the database
+            Connection dbCon = DbConnection.getConnection(URI);
+            
+            // create the statement
+            PreparedStatement stmt = dbCon.prepareStatement(sql);
+            
+            // copy the data from the student domain object into the SQL parameters
+            stmt.setString(1, p.getProductId());
+            stmt.setString(2, p.getName());
+            stmt.setString(3, p.getDescription());
+            stmt.setString(4, p.getCategory());
+            stmt.setBigDecimal(5, p.getListPrice());
+            stmt.setBigDecimal(6, p.getQuantityInStock());
+
+            stmt.executeUpdate();
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
    
 }
