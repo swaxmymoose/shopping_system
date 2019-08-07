@@ -35,6 +35,29 @@ public class ProductDatabaseDAO implements DAO {
     @Override
     public Collection getCategories() {
         String sql = "select distinct category from product";
+        
+        try {
+            // get a connection to the database
+            Connection dbCon = DbConnection.getConnection(URI);
+            
+            // create the statement
+            PreparedStatement stmt = dbCon.prepareStatement(sql);
+
+            // execute the query
+            ResultSet rs = stmt.executeQuery();
+            
+            List<String> categories = new ArrayList<>();
+            
+            while(rs.next()) {
+                categories.add(rs.getString("Category"));
+            }
+            
+            return categories;
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        
     }
 
     @Override
