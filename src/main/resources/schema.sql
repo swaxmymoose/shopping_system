@@ -8,3 +8,11 @@
  * Created: 7/08/2019
  */
 
+create table Product (
+    productId varchar(50) primary key,
+    name varchar(50),
+    description varchar(100),
+    category varchar(50),
+    listprice decimal(5,2),
+    quantityInStock int
+);
