@@ -34,7 +34,7 @@ public class ProductDatabaseDAO implements DAO {
 
     @Override
     public Collection getCategories() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "select distinct category from product";
     }
 
     @Override
