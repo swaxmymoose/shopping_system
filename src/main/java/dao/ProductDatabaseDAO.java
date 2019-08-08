@@ -79,7 +79,7 @@ public class ProductDatabaseDAO implements DAO {
 
     @Override
     public Product getProductById(String id) {
-        String sql = "select * from product where id = ?";
+        String sql = "select * from product where productid = ?";
         
         try {
             // get a connection to the database
@@ -158,14 +158,53 @@ public class ProductDatabaseDAO implements DAO {
     }
 
     @Override
-    public Collection<Product> getProductsByCategory(String category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Collection<Product> getProductsByCategory(String categoryToFilter) {
+       String sql = "select * from product where category = ?";
+       try {
+            // get a connection to the database
+            Connection dbCon = DbConnection.getConnection(URI);
+            
+            // create the statement
+            PreparedStatement stmt = dbCon.prepareStatement(sql);
+            
+            // set the parameter
+            stmt.setString(1, categoryToFilter);
+            
+            // execute the query
+            ResultSet rs = stmt.executeQuery();
+
+            // Using a List to preserve the order in which the data was returned from the query.
+            List<Product> products = new ArrayList<>();
+
+            // iterate through the query results
+            while (rs.next()) {
+
+                // get the data out of the query
+                String productId = rs.getString("productid");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                String category = rs.getString("category");
+                BigDecimal listprice = rs.getBigDecimal("listprice");
+                BigDecimal quantityInStock = rs.getBigDecimal("quantityinstock");
+
+                // use the data to create a product object
+                Product p = new Product(productId, name, description, category, listprice, quantityInStock);
+
+                // and put it in the collection
+                products.add(p);
+            }
+            
+            return products;
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public void saveProduct(Product p) {
         
-        String sql="insert into product (productId, name, description, category, listprice, quantityinstock) values (?,?,?,?,?,?)";
+        String sql = "insert into product (productId, name, description, category, listprice, quantityinstock) values (?,?,?,?,?,?)";
         
         try {
             // get a connection to the database
