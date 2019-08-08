@@ -29,7 +29,24 @@ public class ProductDatabaseDAO implements DAO {
    
     @Override
     public void deleteProduct(Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "delete from product where productid = ?";
+        
+        try {
+            // get a connection to the database
+            Connection dbCon = DbConnection.getConnection(URI);
+            
+            // create the statement
+            PreparedStatement stmt = dbCon.prepareStatement(sql);
+
+            // set the parameter
+            stmt.setString(1, p.getProductId());
+            
+            // execute the update
+            stmt.executeUpdate();
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
