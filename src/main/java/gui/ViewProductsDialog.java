@@ -6,6 +6,7 @@
 package gui;
 
 import dao.ProductCollectionsDAO;
+import dao.ProductDatabaseDAO;
 import domain.Product;
 import helpers.SimpleListModel;
 import java.util.Collection;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class ViewProductsDialog extends javax.swing.JDialog {
     
-    private ProductCollectionsDAO dao = new ProductCollectionsDAO();
+    private ProductDatabaseDAO dao = new ProductDatabaseDAO();
     SimpleListModel myModelProducts = new SimpleListModel();
     Collection allProducts = dao.getProducts();
     

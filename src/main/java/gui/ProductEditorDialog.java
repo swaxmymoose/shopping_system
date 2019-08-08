@@ -1,6 +1,6 @@
 package gui;
 
-import dao.ProductCollectionsDAO;
+import dao.ProductDatabaseDAO;
 import domain.Product;
 import helpers.SimpleListModel;
 import java.math.BigDecimal;
@@ -18,7 +18,7 @@ import java.util.Collection;
  */
 public class ProductEditorDialog extends javax.swing.JDialog {
     
-    private ProductCollectionsDAO dao = new ProductCollectionsDAO();
+    private ProductDatabaseDAO dao = new ProductDatabaseDAO();
     SimpleListModel myModel = new SimpleListModel();
     Collection collection = dao.getCategories();
 

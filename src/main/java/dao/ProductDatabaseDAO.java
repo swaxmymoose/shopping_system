@@ -49,7 +49,7 @@ public class ProductDatabaseDAO implements DAO {
             List<String> categories = new ArrayList<>();
             
             while(rs.next()) {
-                categories.add(rs.getString("Category"));
+                categories.add(rs.getString("category"));
             }
             
             return categories;
@@ -62,7 +62,7 @@ public class ProductDatabaseDAO implements DAO {
 
     @Override
     public Product getProductById(String id) {
-        String sql = "select * from student where id = ?";
+        String sql = "select * from product where id = ?";
         
         try {
             // get a connection to the database
@@ -79,17 +79,17 @@ public class ProductDatabaseDAO implements DAO {
 
             // query only returns a single result, so use 'if' instead of 'while'
             if (rs.next()) {
-                String productId = rs.getString("ProductId");
+                String productId = rs.getString("productid");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
                 String category = rs.getString("category");
                 BigDecimal listprice = rs.getBigDecimal("listprice");
-                BigDecimal quantityInStock = rs.getBigDecimal("quantityInStock");
+                BigDecimal quantityInStock = rs.getBigDecimal("quantityinstock");
 
                 return new Product(productId, name, description, category, listprice, quantityInStock);
 
             } else {
-                // no student matches given ID so return null
+                // no products matches given ID so return null
                 return null;
             }
             
@@ -100,7 +100,7 @@ public class ProductDatabaseDAO implements DAO {
 
     @Override
     public Collection<Product> getProducts() {
-        String sql = "select * from Product order by productId";
+        String sql = "select * from product order by productId";
         
         try {
             // get a connection to the database
@@ -119,12 +119,12 @@ public class ProductDatabaseDAO implements DAO {
             while (rs.next()) {
 
                 // get the data out of the query
-                String productId = rs.getString("ProductId");
+                String productId = rs.getString("productid");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
                 String category = rs.getString("category");
                 BigDecimal listprice = rs.getBigDecimal("listprice");
-                BigDecimal quantityInStock = rs.getBigDecimal("quantityInStock");
+                BigDecimal quantityInStock = rs.getBigDecimal("quantityinstock");
 
                 // use the data to create a product object
                 Product p = new Product(productId, name, description, category, listprice, quantityInStock);
@@ -148,7 +148,7 @@ public class ProductDatabaseDAO implements DAO {
     @Override
     public void saveProduct(Product p) {
         
-        String sql="insert into student (id, name, mark) values (?,?,?,?,?,?)";
+        String sql="insert into product (productId, name, description, category, listprice, quantityinstock) values (?,?,?,?,?,?)";
         
         try {
             // get a connection to the database
@@ -157,7 +157,7 @@ public class ProductDatabaseDAO implements DAO {
             // create the statement
             PreparedStatement stmt = dbCon.prepareStatement(sql);
             
-            // copy the data from the student domain object into the SQL parameters
+            // copy the data from the product domain object into the SQL parameters
             stmt.setString(1, p.getProductId());
             stmt.setString(2, p.getName());
             stmt.setString(3, p.getDescription());
