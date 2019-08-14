@@ -5,8 +5,7 @@
  */
 package gui;
 
-import dao.ProductCollectionsDAO;
-import dao.ProductDatabaseDAO;
+import dao.DAO;
 import domain.Product;
 import helpers.SimpleListModel;
 import java.util.Collection;
@@ -17,24 +16,26 @@ import javax.swing.JOptionPane;
  * @author rofth173
  */
 public class ViewProductsDialog extends javax.swing.JDialog {
-    
-    private ProductDatabaseDAO dao = new ProductDatabaseDAO();
+
+    private final DAO dao;
     SimpleListModel myModelProducts = new SimpleListModel();
-    Collection allProducts = dao.getProducts();
-    
+
     SimpleListModel myModelCategories = new SimpleListModel();
-    Collection allCategories = dao.getCategories();
-    
 
     /**
      * Creates new form ViewProductsDialog
      */
-    public ViewProductsDialog(java.awt.Frame parent, boolean modal) {
+    public ViewProductsDialog(java.awt.Frame parent, boolean modal, DAO dao) {
         super(parent, modal);
         initComponents();
+
+        this.dao = dao;
+        Collection allProducts = dao.getProducts();
+        Collection allCategories = dao.getCategories();
+
         myModelProducts.updateItems(allProducts);
         lstProducts.setModel(myModelProducts);
-        
+
         myModelCategories.updateItems(allCategories);
         cmbCategory.setModel(myModelCategories);
     }
@@ -155,7 +156,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnProductViewCloseActionPerformed
 
     private void btnDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductActionPerformed
-        if(!lstProducts.isSelectionEmpty()) {
+        if (!lstProducts.isSelectionEmpty()) {
             Product product = lstProducts.getSelectedValue();
             JOptionPane JOptionPane = new JOptionPane();
             int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete " + product.toString());
@@ -163,7 +164,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
                 dao.deleteProduct(product);
                 lstProducts.clearSelection();
                 myModelProducts.updateItems(dao.getProducts());
-            } 
+            }
         }
     }//GEN-LAST:event_btnDeleteProductActionPerformed
 
@@ -174,52 +175,10 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void cmbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoryActionPerformed
-        String selectedCategory = (String)cmbCategory.getSelectedItem();
+        String selectedCategory = (String) cmbCategory.getSelectedItem();
         Collection productsToDisplay = dao.getProductsByCategory(selectedCategory);
         myModelProducts.updateItems(productsToDisplay);
     }//GEN-LAST:event_cmbCategoryActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewProductsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewProductsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewProductsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewProductsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ViewProductsDialog dialog = new ViewProductsDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteProduct;
