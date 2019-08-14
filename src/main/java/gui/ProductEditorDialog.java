@@ -1,10 +1,11 @@
 package gui;
 
-import dao.ProductDatabaseDAO;
+import dao.*;
 import domain.Product;
 import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,7 +19,7 @@ import java.util.Collection;
  */
 public class ProductEditorDialog extends javax.swing.JDialog {
     
-    private ProductDatabaseDAO dao = new ProductDatabaseDAO();
+    private ProductCollectionsDAO dao = new ProductCollectionsDAO();
     SimpleListModel myModel = new SimpleListModel();
     Collection collection = dao.getCategories();
 
@@ -171,31 +172,38 @@ public class ProductEditorDialog extends javax.swing.JDialog {
 
     private void btnProductSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductSaveActionPerformed
         // TODO add your handling code here:
-        String productId = txtProductId.getText();
-        String productName = txtProductName.getText();
-        String productDescription = txtProductDescription.getText();
-        String productCategory = cmbProductCategory.getSelectedItem().toString();
-        BigDecimal productPrice = new BigDecimal(txtProductPrice.getText());
-        BigDecimal productQuantityInStock = new BigDecimal(txtProductQuantityInStock.getText());
+        try {
+            String productId = txtProductId.getText();
+            String productName = txtProductName.getText();
+            String productDescription = txtProductDescription.getText();
+            String productCategory = cmbProductCategory.getSelectedItem().toString();
+            BigDecimal productPrice = new BigDecimal(txtProductPrice.getText());
+            BigDecimal productQuantityInStock = new BigDecimal(txtProductQuantityInStock.getText());
+
+
+            System.out.println(productId);
+            System.out.println(productName);
+            System.out.println(productDescription);
+            System.out.println(productCategory);
+            System.out.println(productPrice);
+            System.out.println(productQuantityInStock);
+
+            Product newProduct = new Product();
+            newProduct.setProductId(productId);
+            newProduct.setName(productName);
+            newProduct.setDescription(productDescription);
+            newProduct.setCategory(productCategory);
+            newProduct.setListPrice(productPrice);
+            newProduct.setQuantityInStock(productQuantityInStock);
         
+            dao.saveProduct(newProduct);
+            dispose();
+        }catch(NumberFormatException e) {
+            JOptionPane JOptionPane = new JOptionPane();
+            JOptionPane.showMessageDialog(this,"You have entered a price or quantity that is not a valid number."
+            ,"Input Error", JOptionPane.ERROR_MESSAGE);
+        }
         
-        System.out.println(productId);
-        System.out.println(productName);
-        System.out.println(productDescription);
-        System.out.println(productCategory);
-        System.out.println(productPrice);
-        System.out.println(productQuantityInStock);
-        
-        Product newProduct = new Product();
-        newProduct.setProductId(productId);
-        newProduct.setName(productName);
-        newProduct.setDescription(productDescription);
-        newProduct.setCategory(productCategory);
-        newProduct.setListPrice(productPrice);
-        newProduct.setQuantityInStock(productQuantityInStock);
-        
-        dao.saveProduct(newProduct);
-        dispose();
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
