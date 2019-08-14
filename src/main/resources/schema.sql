@@ -10,9 +10,9 @@
 
 create table Product (
     productId varchar(50) primary key,
-    name varchar(50),
-    description varchar(100),
-    category varchar(50),
-    listprice decimal(10,2),
-    quantityInStock int
+    name varchar(50) not null,
+    description varchar(100) not null,
+    category varchar(50) not null,
+    listprice decimal(10,2) not null,
+    quantityInStock int not null
 );
