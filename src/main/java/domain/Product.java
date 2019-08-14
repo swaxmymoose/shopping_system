@@ -6,17 +6,31 @@
 package domain;
 
 import java.math.BigDecimal;
+import net.sf.oval.constraint.*;
 
 /**
  *
  * @author rofth173
  */
 public class Product {
+    @NotNull(message = "Id must be provided.")
+    @NotBlank(message = "Id must be provided.")
     private String productId;
+    @NotNull(message = "Name must be provided.")
+    @NotBlank(message = "Name must be provided.")
+    @Length(min=2, message="Name must contain at least two characters.")
     private String name;
+    @NotNull(message = "Description must be provided.")
+    @NotBlank(message = "Description must be provided.")
     private String description;
+    @NotNull(message = "Category must be provided.")
+    @NotBlank(message = "Category must be provided.")
     private String category;
+    @NotNull(message = "Price must be provided.")
+    @NotNegative(message = "Price must be zero or greater.")
     private BigDecimal listPrice;
+    @NotNull(message = "Quantity in stock must be provided.")
+    @NotNegative(message = "Quantity in stock must be zero or greater.")
     private BigDecimal quantityInStock;
 
     public Product(String productId, String name, String description, String category, BigDecimal listPrice, BigDecimal quantityInStock) {

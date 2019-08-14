@@ -6,6 +6,9 @@ import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.Collection;
 import javax.swing.JOptionPane;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.exception.ConstraintsViolatedException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -180,14 +183,6 @@ public class ProductEditorDialog extends javax.swing.JDialog {
             BigDecimal productPrice = new BigDecimal(txtProductPrice.getText());
             BigDecimal productQuantityInStock = new BigDecimal(txtProductQuantityInStock.getText());
 
-
-            System.out.println(productId);
-            System.out.println(productName);
-            System.out.println(productDescription);
-            System.out.println(productCategory);
-            System.out.println(productPrice);
-            System.out.println(productQuantityInStock);
-
             Product newProduct = new Product();
             newProduct.setProductId(productId);
             newProduct.setName(productName);
@@ -195,15 +190,23 @@ public class ProductEditorDialog extends javax.swing.JDialog {
             newProduct.setCategory(productCategory);
             newProduct.setListPrice(productPrice);
             newProduct.setQuantityInStock(productQuantityInStock);
-        
+            
+            new Validator().assertValid(newProduct);
             dao.saveProduct(newProduct);
             dispose();
         }catch(NumberFormatException e) {
             JOptionPane JOptionPane = new JOptionPane();
             JOptionPane.showMessageDialog(this,"You have entered a price or quantity that is not a valid number."
             ,"Input Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        }catch (ConstraintsViolatedException ex) {
+            ConstraintViolation[] violations = ex.getConstraintViolations();
+            String msg = "Please fix the following input problems:";
+            for (ConstraintViolation cv : violations) {
+            msg += "\n •" + cv.getMessage();
+            }
+            JOptionPane.showMessageDialog(this, msg, "Input Error",
+            JOptionPane.ERROR_MESSAGE);
+            }      
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
