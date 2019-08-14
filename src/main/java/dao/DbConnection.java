@@ -23,7 +23,7 @@ public class DbConnection {
       try {
          return pool.getConnection();
       } catch (SQLException ex) {
-         throw new RuntimeException(ex);
+         throw new DAOException(ex.getMessage(), ex);
       }
    }
 

@@ -203,10 +203,13 @@ public class ProductEditorDialog extends javax.swing.JDialog {
             String msg = "Please fix the following input problems:";
             for (ConstraintViolation cv : violations) {
             msg += "\n •" + cv.getMessage();
-            }
+        }
             JOptionPane.showMessageDialog(this, msg, "Input Error",
             JOptionPane.ERROR_MESSAGE);
-            }      
+        }catch (DAOException ex) {
+            JOptionPane JOptionPane = new JOptionPane();
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }   
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
