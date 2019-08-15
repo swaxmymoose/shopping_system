@@ -196,7 +196,7 @@ public class ProductEditorDialog extends javax.swing.JDialog {
             new Validator().assertValid(newProduct);
             dao.saveProduct(newProduct);
             dispose();
-        }catch(NumberFormatException e) {
+        }catch(NumberFormatException ex) {
             JOptionPane JOptionPane = new JOptionPane();
             JOptionPane.showMessageDialog(this,"You have entered a price or quantity that is not a valid number."
             ,"Input Error", JOptionPane.ERROR_MESSAGE);
@@ -211,7 +211,10 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         }catch (DAOException ex) {
             JOptionPane JOptionPane = new JOptionPane();
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        }   
+        }catch (NullPointerException ex) {
+            JOptionPane JOptionPane = new JOptionPane();
+            JOptionPane.showMessageDialog(this, "Please enter product detials before saving");
+        }
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
