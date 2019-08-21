@@ -181,7 +181,7 @@ public class ProductEditorDialog extends javax.swing.JDialog {
             String productId = txtProductId.getText();
             String productName = txtProductName.getText();
             String productDescription = txtProductDescription.getText();
-            String productCategory = cmbProductCategory.getSelectedItem().toString();
+            String productCategory = (String) cmbProductCategory.getSelectedItem();
             BigDecimal productPrice = new BigDecimal(txtProductPrice.getText());
             BigDecimal productQuantityInStock = new BigDecimal(txtProductQuantityInStock.getText());
 
@@ -211,10 +211,11 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         }catch (DAOException ex) {
             JOptionPane JOptionPane = new JOptionPane();
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        }catch (NullPointerException ex) {
-            JOptionPane JOptionPane = new JOptionPane();
-            JOptionPane.showMessageDialog(this, "Please enter product detials before saving");
         }
+//        catch (NullPointerException ex) {
+//            JOptionPane JOptionPane = new JOptionPane();
+//            JOptionPane.showMessageDialog(this, "Please enter product detials before saving");
+//        }
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed

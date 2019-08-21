@@ -11,7 +11,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import dao.DbConnection;
 
 /**
  *
@@ -19,7 +18,7 @@ import dao.DbConnection;
  */
 public class ProductDatabaseDAO implements DAO {
     
-    private static String URI = DbConnection.getDefaultConnectionUri();
+    private String URI = DbConnection.getDefaultConnectionUri();
     
     public ProductDatabaseDAO() {}
     

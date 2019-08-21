@@ -1,5 +1,6 @@
 
 import dao.ProductCollectionsDAO;
+import dao.ProductDatabaseDAO;
 import gui.MainMenuFrame;
 
 /*
@@ -15,8 +16,8 @@ import gui.MainMenuFrame;
 public class Administration {
     public static void main(String[] args) {
         System.out.println("main method!");
-        //MainMenuFrame frame = new MainMenuFrame(new ProductDatabaseDAO());
-        MainMenuFrame frame = new MainMenuFrame(new ProductCollectionsDAO());
+        MainMenuFrame frame = new MainMenuFrame(new ProductDatabaseDAO());
+//        MainMenuFrame frame = new MainMenuFrame(new ProductCollectionsDAO());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 

@@ -7,6 +7,7 @@
  * Author:  rofth173
  * Created: 7/08/2019
  */
+drop table if exists  product;
 
 create table Product (
     productId varchar(50) primary key,
@@ -14,5 +15,5 @@ create table Product (
     description varchar(100) not null,
     category varchar(50) not null,
     listprice decimal(10,2) not null,
-    quantityInStock int not null
+    quantityInStock decimal(10,2) not null
 );

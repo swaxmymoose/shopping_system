@@ -18,7 +18,9 @@ import static org.junit.Assert.*;
  * @author rofth173
  */
 public class ProductCollectionsDAOTest {
-    private ProductCollectionsDAO dao = new ProductCollectionsDAO();
+    //private ProductCollectionsDAO dao = new ProductCollectionsDAO();
+    private DAO dao = new ProductDatabaseDAO("jdbc:h2:mem:test;INIT=runscript from 'src/main/resources/schema.sql'");
+    
     private Product prodOne;
     private Product prodTwo;
     private Product prodThree;
@@ -28,6 +30,7 @@ public class ProductCollectionsDAOTest {
     
     @Before
     public void setUp() {
+
         this.prodOne = new Product("1", "name1","desc1","cat1",new BigDecimal("11.00"), new BigDecimal("22.00"));
         this.prodTwo = new Product("2", "name2","desc2","cat2",new BigDecimal("33.00"), new BigDecimal("44.00"));
         this.prodThree = new Product("3", "name3","desc3","cat3",new BigDecimal("55.00"), new BigDecimal("66.00"));
