@@ -84,7 +84,7 @@ public class ProductCollectionsDAOTest {
     
     @Test
     public void testGetProductById() {
-        assertTrue("Ensure that searching for a saved product with id returns the correct product", dao.getProductById("1") == prodOne);
+        assertTrue("Ensure that searching for a saved product with id returns the correct product", dao.getProductById("1").equals(prodOne));
         assertNull("Ensure that searching for non existant product returns null", dao.getProductById("3"));      
     }
     

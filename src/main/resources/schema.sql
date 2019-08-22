@@ -7,7 +7,7 @@
  * Author:  rofth173
  * Created: 7/08/2019
  */
-drop table if exists  product;
+
 
 create table Product (
     productId varchar(50) primary key,

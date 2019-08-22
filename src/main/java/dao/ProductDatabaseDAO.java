@@ -30,13 +30,13 @@ public class ProductDatabaseDAO implements DAO {
     public void deleteProduct(Product p) {
         String sql = "delete from product where productid = ?";
         
-        try {
+        try (
             // get a connection to the database
             Connection dbCon = DbConnection.getConnection(URI);
             
             // create the statement
             PreparedStatement stmt = dbCon.prepareStatement(sql);
-
+        ) {
             // set the parameter
             stmt.setString(1, p.getProductId());
             
@@ -52,12 +52,13 @@ public class ProductDatabaseDAO implements DAO {
     public Collection getCategories() {
         String sql = "select distinct category from product";
         
-        try {
+        try (
             // get a connection to the database
             Connection dbCon = DbConnection.getConnection(URI);
             
             // create the statement
             PreparedStatement stmt = dbCon.prepareStatement(sql);
+        ) {
 
             // execute the query
             ResultSet rs = stmt.executeQuery();
@@ -80,12 +81,13 @@ public class ProductDatabaseDAO implements DAO {
     public Product getProductById(String id) {
         String sql = "select * from product where productid = ?";
         
-        try {
+        try (
             // get a connection to the database
             Connection dbCon = DbConnection.getConnection(URI);
             
             // create the statement
             PreparedStatement stmt = dbCon.prepareStatement(sql);
+        ) {
             
             // set the parameter
             stmt.setString(1, id);
@@ -118,12 +120,13 @@ public class ProductDatabaseDAO implements DAO {
     public Collection<Product> getProducts() {
         String sql = "select * from product order by productId";
         
-        try {
+        try (
             // get a connection to the database
             Connection dbCon = DbConnection.getConnection(URI);
             
             // create the statement
             PreparedStatement stmt = dbCon.prepareStatement(sql);
+        ) {
             
             // execute the query
             ResultSet rs = stmt.executeQuery();
@@ -159,12 +162,13 @@ public class ProductDatabaseDAO implements DAO {
     @Override
     public Collection<Product> getProductsByCategory(String categoryToFilter) {
        String sql = "select * from product where category = ?";
-       try {
+       try (
             // get a connection to the database
             Connection dbCon = DbConnection.getConnection(URI);
             
             // create the statement
             PreparedStatement stmt = dbCon.prepareStatement(sql);
+        ) {
             
             // set the parameter
             stmt.setString(1, categoryToFilter);
@@ -205,12 +209,13 @@ public class ProductDatabaseDAO implements DAO {
         
         String sql = "insert into product (productId, name, description, category, listprice, quantityinstock) values (?,?,?,?,?,?)";
         
-        try {
+        try (
             // get a connection to the database
             Connection dbCon = DbConnection.getConnection(URI);
             
             // create the statement
             PreparedStatement stmt = dbCon.prepareStatement(sql);
+        ) {
             
             // copy the data from the product domain object into the SQL parameters
             stmt.setString(1, p.getProductId());
