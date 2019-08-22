@@ -1,2 +1,55 @@
 @startuml
+@startuml
+' use strict UML mode
+skinparam style strictuml
+
+title Filter products by category - Sequence Diagram
+
+actor User
+activate User
+participant "MainMenu" <<dialog>>
+
+
+activate H2database
+
+
+User -> MainMenu++ : clicks 'view products'
+
+create ViewProducts <<dialog>>
+MainMenu -> ViewProducts : contruct
+ViewProducts ++
+
+create ProductDatabaseDAO <<DAO>>
+ViewProducts -> ProductDatabaseDAO : construct
+activate ProductDatabaseDAO
+
+
+
+ViewProducts -> ProductDatabaseDAO : getProducts()
+
+ProductDatabaseDAO -> H2database : execute sql select statment
+H2database --> ProductDatabaseDAO : product table
+return products collection
+ViewProducts -> ViewProducts : set GUI to display products
+ViewProducts--
+
+User -> ViewProducts++ : selects category
+ViewProducts -> ProductDatabaseDAO++ : getProductByCategory()
+ProductDatabaseDAO -> H2database : execute sql select statment
+H2database --> ProductDatabaseDAO : table of products associated with category
+ProductDatabaseDAO --> ViewProducts : product collecion
+ProductDatabaseDAO--
+ViewProducts -> ViewProducts : set GUI to display products
+ViewProducts--
+
+
+User -> ViewProducts++ : clicks 'close'
+ViewProducts -> ViewProducts : dispose()
+destroy ViewProducts
+ViewProducts--
+
+database H2database
+
+
 @enduml
+
