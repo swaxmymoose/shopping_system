@@ -35,8 +35,9 @@ ViewProducts--
 
 User -> ViewProducts++ : selects category
 ViewProducts -> ProductDatabaseDAO++ : getProductByCategory()
+ProductDatabaseDAO -> ProductDatabaseDAO : generate sql select statment
 ProductDatabaseDAO -> H2database : execute sql select statment
-H2database --> ProductDatabaseDAO : table of products associated with category
+H2database --> ProductDatabaseDAO : rows of products associated with category
 ProductDatabaseDAO --> ViewProducts : product collecion
 ProductDatabaseDAO--
 ViewProducts -> ViewProducts : set GUI to display products

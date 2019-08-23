@@ -35,8 +35,9 @@ ViewProducts--
 
 User -> ViewProducts++ : enters id and clicks 'search'
 ViewProducts -> ProductDatabaseDAO++ : getProductById()
+ProductDatabaseDAO -> ProductDatabaseDAO : generate sql select statment
 ProductDatabaseDAO -> H2database : execute sql select statment
-H2database --> ProductDatabaseDAO : product column associated with id
+H2database --> ProductDatabaseDAO : product row associated with id
 ProductDatabaseDAO --> ViewProducts : product
 ProductDatabaseDAO--
 ViewProducts -> ViewProducts : set GUI to display product

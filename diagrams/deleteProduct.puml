@@ -27,6 +27,7 @@ activate ProductDatabaseDAO
 
 ViewProducts -> ProductDatabaseDAO : getProducts()
 
+ProductDatabaseDAO -> ProductDatabaseDAO : generate sql delete statment
 ProductDatabaseDAO -> H2database : execute sql select statment
 H2database --> ProductDatabaseDAO : product table
 return products collection
