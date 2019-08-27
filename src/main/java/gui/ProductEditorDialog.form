@@ -95,12 +95,12 @@
                   <Component id="cmbProductCategory" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblProductCategory" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblProductPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtProductPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblProductPrice" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtProductPrice" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblQuantityInStock" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtProductQuantityInStock" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -122,6 +122,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtProductId">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtProductId" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblProductName">
       <Properties>
@@ -129,6 +132,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtProductName">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtProductName" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProductNameActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -138,6 +147,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="name" type="java.lang.String" value="txtProductDescription" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -162,6 +172,7 @@
             <StringItem index="3" value="Item 4"/>
           </StringArray>
         </Property>
+        <Property name="name" type="java.lang.String" value="cmbProductCategory" noResource="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -173,6 +184,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtProductPrice">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtProductPrice" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblQuantityInStock">
       <Properties>
@@ -180,10 +194,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtProductQuantityInStock">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtProductQuantityInStock" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProductQuantityInStockActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnProductSave">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
+        <Property name="name" type="java.lang.String" value="btnProductSave" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductSaveActionPerformed"/>
@@ -192,10 +213,8 @@
     <Component class="javax.swing.JButton" name="btnProductCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
+        <Property name="name" type="java.lang.String" value="btnProductCancel" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductCancelActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

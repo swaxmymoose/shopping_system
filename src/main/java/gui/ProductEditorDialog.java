@@ -68,10 +68,20 @@ public class ProductEditorDialog extends javax.swing.JDialog {
 
         lblProductId.setText("Product ID:");
 
+        txtProductId.setName("txtProductId"); // NOI18N
+
         lblProductName.setText("Product Name:");
+
+        txtProductName.setName("txtProductName"); // NOI18N
+        txtProductName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProductNameActionPerformed(evt);
+            }
+        });
 
         txtProductDescription.setColumns(20);
         txtProductDescription.setRows(5);
+        txtProductDescription.setName("txtProductDescription"); // NOI18N
         jScrollPane1.setViewportView(txtProductDescription);
 
         lblProductDescription.setText("Product Description:");
@@ -79,12 +89,23 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         lblProductCategory.setText("Category:");
 
         cmbProductCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProductCategory.setName("cmbProductCategory"); // NOI18N
 
         lblProductPrice.setText("Price:");
 
+        txtProductPrice.setName("txtProductPrice"); // NOI18N
+
         lblQuantityInStock.setText("Quantity in Stock:");
 
+        txtProductQuantityInStock.setName("txtProductQuantityInStock"); // NOI18N
+        txtProductQuantityInStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProductQuantityInStockActionPerformed(evt);
+            }
+        });
+
         btnProductSave.setText("Save");
+        btnProductSave.setName("btnProductSave"); // NOI18N
         btnProductSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProductSaveActionPerformed(evt);
@@ -92,11 +113,7 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         });
 
         btnProductCancel.setText("Cancel");
-        btnProductCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductCancelActionPerformed(evt);
-            }
-        });
+        btnProductCancel.setName("btnProductCancel"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,9 +175,9 @@ public class ProductEditorDialog extends javax.swing.JDialog {
                     .addComponent(cmbProductCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblProductCategory))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblProductPrice)
-                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQuantityInStock)
@@ -214,9 +231,13 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
-    private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnProductCancelActionPerformed
+    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductNameActionPerformed
+
+    private void txtProductQuantityInStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductQuantityInStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductQuantityInStockActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
