@@ -9,6 +9,7 @@ import dao.DAO;
 import dao.ProductDatabaseDAO;
 import java.util.concurrent.CompletableFuture;
 import org.jooby.Jooby;
+import org.jooby.json.Gzon;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Server extends Jooby {
     
     public Server() {
         port(8080);
+        use(new Gzon());
         use(new ProductModule(productDao));
     }
     
