@@ -5,11 +5,10 @@
  */
 package web;
 
-import dao.DAO;
-import dao.ProductDatabaseDAO;
 import java.util.concurrent.CompletableFuture;
 import org.jooby.Jooby;
 import org.jooby.json.Gzon;
+import dao.*;
 
 /**
  *
@@ -17,12 +16,14 @@ import org.jooby.json.Gzon;
  */
 public class Server extends Jooby {
     
-    DAO productDao = new ProductDatabaseDAO();
+    ProductDaoInterface productDao = new ProductDatabaseDAO();
+    CustomerDaoInterface customerDao = new CustomerCollectionsDAO();
     
     public Server() {
         port(8080);
         use(new Gzon());
         use(new ProductModule(productDao));
+        use(new CustomerModule(customerDao));
     }
     
     public static void main(String[] args) throws Exception {

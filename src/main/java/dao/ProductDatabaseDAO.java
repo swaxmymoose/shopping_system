@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author rofth173
  */
-public class ProductDatabaseDAO implements DAO {
+public class ProductDatabaseDAO implements ProductDaoInterface {
     
     private String URI = DbConnection.getDefaultConnectionUri();
     

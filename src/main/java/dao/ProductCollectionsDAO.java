@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author rofth173
  */
-public class ProductCollectionsDAO implements DAO {
+public class ProductCollectionsDAO implements ProductDaoInterface {
     
     private static Collection<Product> products = new HashSet();
     private static Map<String, Product> idToProduct = new HashMap();

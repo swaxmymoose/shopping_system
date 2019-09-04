@@ -5,11 +5,11 @@
  */
 package gui;
 
-import dao.DAO;
 import domain.Product;
 import helpers.SimpleListModel;
 import java.util.Collection;
 import javax.swing.JOptionPane;
+import dao.ProductDaoInterface;
 
 /**
  *
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class ViewProductsDialog extends javax.swing.JDialog {
 
-    private final DAO dao;
+    private final ProductDaoInterface dao;
     SimpleListModel myModelProducts = new SimpleListModel();
 
     SimpleListModel myModelCategories = new SimpleListModel();
@@ -25,7 +25,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
     /**
      * Creates new form ViewProductsDialog
      */
-    public ViewProductsDialog(java.awt.Frame parent, boolean modal, DAO dao) {
+    public ViewProductsDialog(java.awt.Frame parent, boolean modal, ProductDaoInterface dao) {
         super(parent, modal);
         initComponents();
 

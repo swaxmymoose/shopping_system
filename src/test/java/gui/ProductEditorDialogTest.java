@@ -5,7 +5,6 @@
  */
 package gui;
 
-import dao.DAO;
 import domain.Product;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import dao.ProductDaoInterface;
 
 /**
  *
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
  */
 public class ProductEditorDialogTest {
     
-    private DAO dao;
+    private ProductDaoInterface dao;
     private DialogFixture fixture;
     private Robot robot;
     
@@ -44,7 +44,7 @@ public class ProductEditorDialogTest {
 	categories.add("Weapon");
 	categories.add("Produce");
 
-	dao = mock(DAO.class);
+	dao = mock(ProductDaoInterface.class);
 
 	when(dao.getCategories()).thenReturn(categories);
     }
@@ -70,10 +70,10 @@ public class ProductEditorDialogTest {
         
         fixture.button("btnProductSave").click();
         
-        // create a Mockito argument captor to use to retrieve the passed student from the mocked DAO
+        // create a Mockito argument captor to use to retrieve the passed student from the mocked ProductDaoInterface
 	ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
 
-	// verify that the DAO.save method was called, and capture the passed student
+	// verify that the ProductDaoInterface.save method was called, and capture the passed student
 	verify(dao).saveProduct(argument.capture());
 
 	// retrieve the passed student from the captor

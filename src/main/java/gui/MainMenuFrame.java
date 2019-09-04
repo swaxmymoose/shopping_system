@@ -5,7 +5,7 @@
  */
 package gui;
 
-import dao.DAO;
+import dao.ProductDaoInterface;
 
 
 /**
@@ -14,12 +14,12 @@ import dao.DAO;
  */
 public class MainMenuFrame extends javax.swing.JFrame {
 
-    private final DAO dao;
+    private final ProductDaoInterface dao;
     
     /**
      * Creates new form MainMenuFrame
      */
-    public MainMenuFrame(DAO dao) {
+    public MainMenuFrame(ProductDaoInterface dao) {
         initComponents();
         this.dao = dao;
     }

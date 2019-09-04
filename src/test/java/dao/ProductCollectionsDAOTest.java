@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class ProductCollectionsDAOTest {
     //private ProductCollectionsDAO dao = new ProductCollectionsDAO();
-    private DAO dao = new ProductDatabaseDAO("jdbc:h2:mem:test;INIT=runscript from 'src/main/resources/schema.sql'");
+    private ProductDaoInterface dao = new ProductDatabaseDAO("jdbc:h2:mem:test;INIT=runscript from 'src/main/resources/schema.sql'");
     
     private Product prodOne;
     private Product prodTwo;
@@ -49,7 +49,7 @@ public class ProductCollectionsDAOTest {
 
     @Test
     public void testSaveProduct() {
-        // save the product using the DAO
+        // save the product using the ProductDaoInterface
         dao.saveProduct(prodThree);
         // ensure that the data store includes the product
         assertTrue("Ensure that the product was saved", dao.getProducts().contains(prodThree));
@@ -69,7 +69,7 @@ public class ProductCollectionsDAOTest {
     public void testDeleteProduct() {
         // sanity check to make sure prodOne does exist before we delete it
         assertTrue("Ensure that the product does exist", dao.getProducts().contains(prodOne));
-        // delete the product via the DAO
+        // delete the product via the ProductDaoInterface
         dao.deleteProduct(prodOne);
         // ensure that the product no longer exists
         assertFalse("Ensure that the product does not exist", dao.getProducts().contains(prodOne));

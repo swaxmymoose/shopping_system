@@ -22,14 +22,14 @@ import net.sf.oval.exception.ConstraintsViolatedException;
  */
 public class ProductEditorDialog extends javax.swing.JDialog {
     
-    private final DAO dao;
+    private final ProductDaoInterface dao;
     SimpleListModel myModel = new SimpleListModel();
 
 
     /**
      * Creates new form ProductEditorDialog
      */
-    public ProductEditorDialog(java.awt.Frame parent, boolean modal, DAO dao) {
+    public ProductEditorDialog(java.awt.Frame parent, boolean modal, ProductDaoInterface dao) {
         super(parent, modal);
         initComponents();
         this.dao = dao;
