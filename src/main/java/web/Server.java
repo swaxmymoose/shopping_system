@@ -20,12 +20,7 @@ public class Server extends Jooby {
     
     public Server() {
         port(8080);
-        get("/api/products", () -> productDao.getProducts());
-        get("/api/products/:id", (req) -> {
-            String id = req.param("id").value();
-            return productDao.getProductById(id);
-        });
-        
+        use(new ProductModule(productDao));
     }
     
     public static void main(String[] args) throws Exception {
