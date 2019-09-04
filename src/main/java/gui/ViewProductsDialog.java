@@ -76,6 +76,7 @@ public class ViewProductsDialog extends javax.swing.JDialog {
         lblViewProducts.setText("View Products");
 
         btnDeleteProduct.setText("Delete");
+        btnDeleteProduct.setName("btnDeleteProduct"); // NOI18N
         btnDeleteProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteProductActionPerformed(evt);
