@@ -1,4 +1,4 @@
-
+package web;
 import org.jooby.Jooby;
 import org.jooby.Results;
 
