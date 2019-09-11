@@ -21,5 +21,7 @@ public class ProductModule extends Jooby{
             return dao.getProductById(id);
         });
         
+        get("/api/categories", () -> dao.getCategories());
+        
     }
 }
