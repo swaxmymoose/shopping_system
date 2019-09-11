@@ -22,6 +22,10 @@ public class ProductModule extends Jooby{
         });
         
         get("/api/categories", () -> dao.getCategories());
+        get("/api/categories/:cat", (req) -> {
+            String cat = req.param("cat").value();
+            return dao.getProductById(cat);
+        });
         
     }
 }

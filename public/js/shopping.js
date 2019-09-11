@@ -13,11 +13,15 @@ module.factory('categoryDAO',function($resource) {
 });
 
 module.controller('ProductController',function(productDAO, categoryDAO) {
-    alert("dewd");
     //load the products
     this.products = productDAO.query();
     //load the categories 
     this.categories = categoryDAO.query();
+    
+    //click handler for the category filter buttons
+    this.selectCategory = function(selectedCat) {
+        this.products = categoryDAO.query({"cat": selectedCat});
+    };
 });
 
 

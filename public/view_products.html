@@ -25,6 +25,6 @@ and open the template in the editor.
                 <td>{{product.quantityInStock}}</td>
             </tr>
         </table>
-        <button ng-repeat="cat in prodCtrl.categories">{{cat}}</button>
+        <button ng-click="prodCtrl.selectCategory(cat)" ng-repeat="cat in prodCtrl.categories">{{cat}}</button>
     </body>
 </html>
