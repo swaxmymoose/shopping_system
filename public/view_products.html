@@ -15,7 +15,16 @@ and open the template in the editor.
         <script src="js/shopping.js"></script>
     </head>
     <body ng-controller="ProductController as prodCtrl">
+        <h1>Products</h1>
         <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity in stock</th>
+            </tr>
             <tr ng-repeat="product in prodCtrl.products">
                 <td>{{product.productId}}</td>
                 <td>{{product.name}}</td>
