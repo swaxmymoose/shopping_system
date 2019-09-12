@@ -24,4 +24,15 @@ module.controller('ProductController',function(productDAO, categoryDAO) {
     };
 });
 
+module.controller('CustomerController',function(registerDAO) {
+    this.registerCustomer = function(customer) {
+        alert("registercustomer");
+        console.log(customer);
+    };
+});
+
+module.factory('registerDAO',function($resource) {
+    return $resource('/api/register');
+});
+
 
