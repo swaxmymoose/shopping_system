@@ -19,9 +19,9 @@ create table Product (
 );
 
 create table Customer (
-    customerId auto_increment primary key,
-    username varchar(50) unique, not null,
-    firstname varchar(50) not null,
+    customerId integer primary key auto_increment,
+    username varchar(50) unique not null,
+    firstName varchar(50) not null,
     surname varchar(50) not null,
     password varchar(50) not null,
     emailAddress varchar(100) not null,
