@@ -17,3 +17,13 @@ create table Product (
     listprice decimal(10,2) not null,
     quantityInStock decimal(10,2) not null
 );
+
+create table Customer (
+    customerId auto_increment primary key,
+    username varchar(50) unique, not null,
+    firstname varchar(50) not null,
+    surname varchar(50) not null,
+    password varchar(50) not null,
+    emailAddress varchar(100) not null,
+    shippingAddress varchar(100) not null,
+);
