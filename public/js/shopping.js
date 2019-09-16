@@ -56,6 +56,16 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
             ctrl.signInMessage ='Sign in failed. Please try again.';
         });
     };
+    
+    this.checkSignIn = function () {
+        // has the customer been added to the session?
+        if ($sessionStorage.customer) {
+            this.signedIn = true;
+            this.welcome = "Welcome " + $sessionStorage.customer.firstName;
+        } else {
+            this.signedIn = false;
+        }
+    };
 });
 
 module.factory('registerDAO',function($resource) {
@@ -65,5 +75,7 @@ module.factory('registerDAO',function($resource) {
 module.factory('signInDAO',function($resource) {
     return $resource('/api/customers/:username');
 });
+
+
 
 
