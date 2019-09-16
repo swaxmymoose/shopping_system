@@ -26,8 +26,15 @@ module.controller('ProductController',function(productDAO, categoryDAO) {
 
 module.controller('CustomerController',function(registerDAO) {
     this.registerCustomer = function(customer) {
-        alert("registercustomer");
-        console.log(customer);
+        registerDAO.save(null, customer,
+        //success callback
+        function() {
+            $window.location ='signin.html';
+        },
+        //error callback
+        function(error) {
+            console.log(error);
+        });
     };
 });
 
