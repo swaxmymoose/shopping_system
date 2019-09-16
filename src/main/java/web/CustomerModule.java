@@ -18,7 +18,7 @@ import org.jooby.Result;
  */
 public class CustomerModule extends Jooby {
     
-    CustomerDaoInterface customerDao = new CustomerCollectionsDAO();
+    CustomerDaoInterface customerDao = new CustomerDatabaseDAO();
     
      public CustomerModule(CustomerDaoInterface dao) {
         get("/api/customers/:username", (req) -> {
