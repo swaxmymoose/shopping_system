@@ -22,6 +22,10 @@ module.controller('ProductController',function(productDAO, categoryDAO) {
     this.selectCategory = function(selectedCat) {
         this.products = categoryDAO.query({"cat": selectedCat});
     };
+    
+    this.selectAllCategory = function() {
+        this.products = productDAO.query(); // !       
+    }
 });
 
 module.controller('CustomerController',function(registerDAO, signInDAO, $sessionStorage, $window) {
