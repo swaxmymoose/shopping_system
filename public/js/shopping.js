@@ -1,5 +1,37 @@
 "usestrict";
 
+//create a new module, and load the other pluggable modules 
+var module = angular.module('ShoppingApp', ['ngResource','ngStorage'])
+
+module.factory('productDAO',function($resource) {
+    return $resource('/api/products/:id');
+});
+
+module.factory('categoryDAO',function($resource) {
+    return $resource('/api/categories/:cat');
+});
+
+module.factory('registerDAO',function($resource) {
+    return $resource('/api/register');
+});
+
+module.factory('signInDAO',function($resource) {
+    return $resource('/api/customers/:username');
+});
+
+module.factory('cart', function ($sessionStorage) {
+    let cart = new ShoppingCart();
+
+    // is the cart in the session storage?
+    if ($sessionStorage.cart) {
+
+        // reconstruct the cart from the session data
+        cart.reconstruct($sessionStorage.cart);
+    }
+
+    return cart;
+});
+
 class SaleItem {
 
     constructor(product, quantity) {
@@ -50,17 +82,6 @@ class SaleItem {
     }
 
 }
-
-//create a new module, and load the other pluggable modules 
-var module = angular.module('ShoppingApp', ['ngResource','ngStorage'])
-
-module.factory('productDAO',function($resource) {
-    return $resource('/api/products/:id');
-});
-
-module.factory('categoryDAO',function($resource) {
-    return $resource('/api/categories/:cat');
-});
 
 module.controller('ProductController',function(productDAO, categoryDAO) {
     //load the products
@@ -121,15 +142,6 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
         }
     };
 });
-
-module.factory('registerDAO',function($resource) {
-    return $resource('/api/register');
-});
-
-module.factory('signInDAO',function($resource) {
-    return $resource('/api/customers/:username');
-});
-
 
 
 
