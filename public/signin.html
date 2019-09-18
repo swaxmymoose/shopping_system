@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
+<!-- Sign in  -->
 <html ng-app="ShoppingApp">
     <head>
         <title>Sign in</title>
@@ -15,6 +12,7 @@ and open the template in the editor.
         <script src="js/shopping.js"></script>
     </head>
     <body>
+        <div ng-include="'menu.html'"></div>
         <h1>Sign in</h1>
         <p>{{custCtrl.signInMessage}}</p>
         <form ng-controller="CustomerController as custCtrl" ng-submit="custCtrl.signIn(username,password)">
