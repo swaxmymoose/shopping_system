@@ -17,6 +17,40 @@ class SaleItem {
 
 }
 
+ class ShoppingCart {
+
+    constructor() {
+        this.items = new Array();
+    }
+
+    reconstruct(sessionData) {
+        for (let item of sessionData.items) {
+            this.addItem(Object.assign(new SaleItem(), item));
+        }
+    }
+
+    getItems() {
+        return this.items;
+    }
+
+    addItem(item) {
+        this.items.push(item);
+    }
+
+    setCustomer(customer) {
+        this.customer = customer;
+    }
+
+    getTotal() {
+        let total = 0;
+        for (let item of this.items) {
+            total += item.getItemTotal();
+        }
+        return total;
+    }
+
+}
+
 //create a new module, and load the other pluggable modules 
 var module = angular.module('ShoppingApp', ['ngResource','ngStorage'])
 
