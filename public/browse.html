@@ -20,7 +20,7 @@ and open the template in the editor.
     <body ng-controller="ProductController as prodCtrl">
         <div ng-include="'menu.html'"></div>
         <h1>Products</h1>
-        <table>
+        <table ng-controller="ShoppingCartController as cartCtrl">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -36,6 +36,7 @@ and open the template in the editor.
                 <td>{{product.category}}</td>
                 <td>{{product.listPrice}}</td>
                 <td>{{product.quantityInStock}}</td>
+                <td><button ng-click="cartCtrl.buy(product)">Buy</button></td>
             </tr>
         </table>
         <button ng-click="prodCtrl.selectCategory(cat)" ng-repeat="cat in prodCtrl.categories">{{cat}}</button>

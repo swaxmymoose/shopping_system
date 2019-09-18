@@ -83,9 +83,12 @@ class SaleItem {
 
 }
 
-module.controller('ShoppingCartController',function(cart) {
+module.controller('ShoppingCartController',function(cart, $sessionStorage) {
     this.items = cart.getItems();
     this.total = cart.getTotal();
+    this.buy = function(product) {
+        $sessionStorage.selectedProduct = product;
+    }
 });
 
 module.controller('ProductController',function(productDAO, categoryDAO) {
