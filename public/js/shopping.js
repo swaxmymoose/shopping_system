@@ -83,6 +83,11 @@ class SaleItem {
 
 }
 
+module.controller('ShoppingCartController',function(cart) {
+    this.items = cart.getItems();
+    this.total = cart.getTotal();
+});
+
 module.controller('ProductController',function(productDAO, categoryDAO) {
     //load the products
     this.products = productDAO.query();
