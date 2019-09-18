@@ -1,5 +1,21 @@
 "usestrict";
 
+class SaleItem {
+
+    constructor(product, quantity) {
+        // only set the fields if we have a valid product
+        if (product) {
+            this.product = product;
+            this.quantityPurchased = quantity;
+            this.salePrice = product.listPrice;
+        }
+    }
+
+    getItemTotal() {
+        return this.salePrice * this.quantityPurchased;
+    }
+
+}
 
 //create a new module, and load the other pluggable modules 
 var module = angular.module('ShoppingApp', ['ngResource','ngStorage'])
