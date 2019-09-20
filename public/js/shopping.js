@@ -87,24 +87,21 @@ class SaleItem {
 module.controller('ShoppingCartController',function(cart, $sessionStorage, $window) {
     this.items = cart.getItems();
     this.total = cart.getTotal();
+    this.selectedProduct = $sessionStorage.selectedProduct;
+    
     this.buy = function(product) {
         $sessionStorage.selectedProduct = product;
-        alert($sessionStorage.selectedProduct);
         $window.location ='purchase.html';
-        //send post to resource api/purchase/:product
-        //maybe idk lol
     }
     
-    this.selectQuantity = function (quantity) {
-        $sessionStorage.quantity = quantity;
-        alert($sessionStorage.quantity);
-    }
-    /*this.addToCart = function() {
+    this.addToCart = function() {
         let product = $sessionStorage.selectedProduct
-        let quantity = $sessionStorage.selectedProduct.quantity //need to store quantity in sessionstorage
+        let quantity = $sessionStorage.selectedProduct.quantity
         let item = new SaleItem(product, quantity)
-        
-    }*/
+        cart.addItem(item);
+        $sessionStorage.cart = cart;
+        $window.location = "cart.html"
+    }
 });
 
 module.controller('ProductController',function(productDAO, categoryDAO) {
