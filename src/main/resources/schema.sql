@@ -27,3 +27,22 @@ create table Customer (
     emailAddress varchar(100) not null,
     shippingAddress varchar(100) not null,
 );
+
+create table Sale (
+     saleId integer primary key auto_increment,
+     saleDate date not null,
+     status varchar(10),
+     customerId integer,
+     items SaleItem
+     constraint Sale_customerId_FK foreign key (customerId) references Customer
+     
+)
+
+create table SaleItem (
+    salePrice decimal(10,2) not null,
+    product varchar(50) not null,
+    quantity integer not null,
+    SaleId integer,
+    constraint SaleItem_SaleId_FK foreign key (SaleId) references Sale
+)
+
