@@ -22,12 +22,9 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
+    <div ng-include="'menu.html'"></div>
     <body ng-controller="ProductController as prodCtrl">
         <h1>Products</h1>
-        <div ng-include="'menu.html'"></div>
-        <h3>Categories</h3>
-        <button ng-click="prodCtrl.selectCategory(cat)" ng-repeat="cat in prodCtrl.categories">{{cat}}</button>
-         <button ng-click="prodCtrl.selectAllCategory()">all</button>
         <table ng-controller="ShoppingCartController as cartCtrl" class="table">
             <thead>
                 <tr>
@@ -51,6 +48,13 @@ and open the template in the editor.
                 </tr>
             </tbody>
         </table>
+        <div class="jumbotron jumbotron-fluid">
+        <div  class="text-center">
+          <h1 class="display-4">Filter Categories</h1>
+          <button ng-click="prodCtrl.selectCategory(cat)" ng-repeat="cat in prodCtrl.categories">{{cat}}</button>
+         <button ng-click="prodCtrl.selectAllCategory()">all</button>
+        </div>
+      </div>
         
     </body>
 </html>

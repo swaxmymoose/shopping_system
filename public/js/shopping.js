@@ -169,7 +169,33 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
         // has the customer been added to the session?
         if ($sessionStorage.customer) {
             this.signedIn = true;
-            this.welcome = "Welcome " + $sessionStorage.customer.firstName;
+            let today = (new Date()).getDay();
+            //today == 0 ? "Monday" : today == 1 ? "Tuesday" : today == 2 ? "Wednesday" : today == 3 ? "Thursday" : today == 4 : "Friday" : today == 5 ? "Saturday" : today == 6 ? "Sunday"
+            switch(today) {
+                case 1 :
+                    today = "Monday";
+                    break;
+                case 2 :
+                    today = "Tuesday";
+                    break;
+                case 3 :
+                    today = "Wednesday";
+                    break;
+                case 4 :
+                    today = "Thursday";
+                    break;
+                case 5:
+                    today = "Friday";
+                    break;
+                case 6 :
+                    today = "Saturday";
+                    break;
+                case 7 :
+                    today = "Sunday";
+                    break;
+                    
+            }
+            this.welcome = "Welcome " + $sessionStorage.customer.firstName + ", we hope you are having a MEGA " + today;
         } else {
             this.signedIn = false;
         }
