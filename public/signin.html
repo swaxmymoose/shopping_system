@@ -6,31 +6,28 @@
         <title>Sign in</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/css/style.css">
+        
         <script src="js/angular.min.js"></script>
         <script src="js/angular-resource.min.js"></script>
         <script src="js/ngStorage.min.js"></script>
         <script src="js/shopping.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
-    <body ng-controller="CustomerController as custCtrl" >
+    <body ng-controller="CustomerController as custCtrl" class="text-center" >
         <div ng-include="'menu.html'"></div>
         <h1>Sign in</h1>
         <p>{{custCtrl.signInMessage}}</p>
-        <form ng-submit="custCtrl.signIn(username,password)">
-        <div class="container">
-          <h1>Register</h1>
+        <form ng-submit="custCtrl.signIn(username,password)" class="form-signin">
           <hr>
-          
-          <label><b>Username</b></label>
-          <input type="text" ng-model="username" required>
-          
-          <label><b>Password</b></label>
-          <input type="password" ng-model="password" required>
+          <input class="form-control" placeholder="username" type="text" ng-model="username" required>
+         
+          <input class="form-control" placeholder="password" type="password" ng-model="password" required>
           
           <button type="submit">Sign in</button>
-
           <hr>
-        
     </form> 
     </body>
 </html>
