@@ -90,7 +90,6 @@ class SaleItem {
 
 module.controller('ShoppingCartController',function(cart, saleDAO, $sessionStorage, $window) {
     this.items = cart.getItems();
-    alert(this.items);
     this.total = cart.getTotal();
     this.selectedProduct = $sessionStorage.selectedProduct;
     this.totalPrice = cart.getTotal();
@@ -129,7 +128,7 @@ module.controller('ProductController',function(productDAO, categoryDAO) {
     };
     
     this.selectAllCategory = function() {
-        this.products = productDAO.query(); // !       
+        this.products = productDAO.query();    
     };
 });
 
@@ -162,7 +161,6 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
         },
         //fail
         function() {
-            alert("fail");
             ctrl.signInMessage ='Sign in failed. Please try again.';
         });
     };
