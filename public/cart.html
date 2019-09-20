@@ -14,24 +14,32 @@ and open the template in the editor.
         <script src="js/ngStorage.min.js"></script>
         <script src="js/shopping.js"></script>
     </head>
-     <body>
+     <body ng-controller="ShoppingCartController as cartCtrl">
         <div ng-include="'menu.html'"></div>
         <h1>Shopping Cart</h1>
-        <table ng-controller="ShoppingCartController as cartCtrl">
+        <table>
             <tr>
-                <th>Name</th>
+                <th>Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
             </tr>
+            
             <tr ng-repeat="item in cartCtrl.items">
                 <td>{{item.product.name}}</td>
                 <td>{{item.product.listPrice}}</td>
                 <td>{{item.quantityPurchased}}</td>
                 <td>{{item.quantityPurchased * item.product.listPrice}}</td>
             </tr>
+            <tr>
+                <th>Total Cost</th>
+            </tr>
+            <tr>
+                <td>{{cartCtrl.totalPrice}}</td>
+            </tr>
+            <button ng-click="cartCtrl.checkOutCart()">Check Out Cart</button>
         </table>
-        <button ng-click="cartCtrl.checkOutCart()">Check Out Cart</button>
+        
         
     </body>
 </html>

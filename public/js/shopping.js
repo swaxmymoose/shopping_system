@@ -93,6 +93,7 @@ module.controller('ShoppingCartController',function(cart, saleDAO, $sessionStora
     alert(this.items);
     this.total = cart.getTotal();
     this.selectedProduct = $sessionStorage.selectedProduct;
+    this.totalPrice = cart.getTotal();
     
     this.buy = function(product) {
         $sessionStorage.selectedProduct = product;
