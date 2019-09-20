@@ -104,7 +104,7 @@ module.controller('ShoppingCartController',function(cart, saleDAO, $sessionStora
         let customer = $sessionStorage.customer;
         cart.setCustomer(customer);
         saleDAO.save(cart);
-        $sessionStorage.removeItem('cart');
+        delete $sessionStorage.cart;
         $window.location = "confirm.html";
     };
     
