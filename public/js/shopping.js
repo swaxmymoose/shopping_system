@@ -19,6 +19,10 @@ module.factory('signInDAO',function($resource) {
     return $resource('/api/customers/:username');
 });
 
+module.factory('saleDAO',function($resource) {
+    return $resource('/api/sales');
+});
+
 
 module.factory('cart', function ($sessionStorage) {
     let cart = new ShoppingCart();
@@ -84,24 +88,32 @@ class SaleItem {
 
 }
 
-module.controller('ShoppingCartController',function(cart, $sessionStorage, $window) {
+module.controller('ShoppingCartController',function(cart, saleDAO, $sessionStorage, $window) {
     this.items = cart.getItems();
+    alert(this.items);
     this.total = cart.getTotal();
     this.selectedProduct = $sessionStorage.selectedProduct;
     
     this.buy = function(product) {
         $sessionStorage.selectedProduct = product;
         $window.location ='purchase.html';
-    }
+    };
     
-    this.addToCart = function() {
-        let product = $sessionStorage.selectedProduct
-        let quantity = $sessionStorage.selectedProduct.quantity
-        let item = new SaleItem(product, quantity)
+    this.checkOutCart = function() {
+        let customer = $sessionStorage.customer;
+        cart.setCustomer(customer);
+        saleDAO.save(cart);
+        $sessionStorage.removeItem('cart');
+        $window.location = "confirm.html";
+    };
+    
+    this.addToCart = function(quantity) {
+        let product = $sessionStorage.selectedProduct;
+        let item = new SaleItem(product, quantity);
         cart.addItem(item);
         $sessionStorage.cart = cart;
-        $window.location = "cart.html"
-    }
+        $window.location = "cart.html";
+    };
 });
 
 module.controller('ProductController',function(productDAO, categoryDAO) {
@@ -117,7 +129,7 @@ module.controller('ProductController',function(productDAO, categoryDAO) {
     
     this.selectAllCategory = function() {
         this.products = productDAO.query(); // !       
-    }
+    };
 });
 
 module.controller('CustomerController',function(registerDAO, signInDAO, $sessionStorage, $window) {
@@ -149,7 +161,7 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
         },
         //fail
         function() {
-            alert("fail")
+            alert("fail");
             ctrl.signInMessage ='Sign in failed. Please try again.';
         });
     };
