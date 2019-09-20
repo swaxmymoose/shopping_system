@@ -6,6 +6,7 @@ and open the template in the editor.
 -->
 <html ng-app="ShoppingApp">
     <head>
+        <title>Buy now</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -16,8 +17,26 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body ng-controller="ShoppingCartController as cartCtrl">
         <div ng-include="'menu.html'"></div>
         <div>TODO write content</div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity in stock</th>
+            </tr>
+            <tr>
+                <td>{{$sessionStorage.selectedProduct}}</td>
+            </tr>
+        </table>
+        <form ng-submit="cartCtrl.selectQuantity(quantiy)">
+            <label><b>Quantity</b></label>
+            <input type="text" ng-model="quantity" required>
+            <button ng-click="cartCtrl.selectQuantity(quantity)">Buy now</button>
+        </form>
     </body>
 </html>

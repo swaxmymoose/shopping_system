@@ -19,6 +19,7 @@ module.factory('signInDAO',function($resource) {
     return $resource('/api/customers/:username');
 });
 
+
 module.factory('cart', function ($sessionStorage) {
     let cart = new ShoppingCart();
 
@@ -83,12 +84,27 @@ class SaleItem {
 
 }
 
-module.controller('ShoppingCartController',function(cart, $sessionStorage) {
+module.controller('ShoppingCartController',function(cart, $sessionStorage, $window) {
     this.items = cart.getItems();
     this.total = cart.getTotal();
     this.buy = function(product) {
         $sessionStorage.selectedProduct = product;
+        alert($sessionStorage.selectedProduct);
+        $window.location ='purchase.html';
+        //send post to resource api/purchase/:product
+        //maybe idk lol
     }
+    
+    this.selectQuantity = function (quantity) {
+        $sessionStorage.quantity = quantity;
+        alert($sessionStorage.quantity);
+    }
+    /*this.addToCart = function() {
+        let product = $sessionStorage.selectedProduct
+        let quantity = $sessionStorage.selectedProduct.quantity //need to store quantity in sessionstorage
+        let item = new SaleItem(product, quantity)
+        
+    }*/
 });
 
 module.controller('ProductController',function(productDAO, categoryDAO) {
@@ -114,7 +130,7 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
         registerDAO.save(null, customer,
         //success callback
         function() {
-            $window.location ='sign_in.html';
+            $window.location ='signin.html';
         },
         //error callback
         function(error) {
@@ -136,6 +152,7 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
         },
         //fail
         function() {
+            alert("fail")
             ctrl.signInMessage ='Sign in failed. Please try again.';
         });
     };
