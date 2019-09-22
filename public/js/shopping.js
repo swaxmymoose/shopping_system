@@ -172,6 +172,9 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
             let today = (new Date()).getDay();
             //today == 0 ? "Monday" : today == 1 ? "Tuesday" : today == 2 ? "Wednesday" : today == 3 ? "Thursday" : today == 4 : "Friday" : today == 5 ? "Saturday" : today == 6 ? "Sunday"
             switch(today) {
+                case 0 :
+                    today = "Sunday";
+                    break;
                 case 1 :
                     today = "Monday";
                     break;
@@ -189,11 +192,7 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
                     break;
                 case 6 :
                     today = "Saturday";
-                    break;
-                case 7 :
-                    today = "Sunday";
-                    break;
-                    
+                    break;    
             }
             this.welcome = "Welcome " + $sessionStorage.customer.firstName + ", we hope you are having a MEGA " + today;
         } else {
