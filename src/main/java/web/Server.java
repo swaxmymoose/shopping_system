@@ -17,13 +17,15 @@ import dao.*;
 public class Server extends Jooby {
     
     ProductDaoInterface productDao = new ProductDatabaseDAO();
-    CustomerDaoInterface customerDao = new CustomerCollectionsDAO();
+    CustomerDaoInterface customerDao = new CustomerCollectionsDAO(); /*shoukd this change to JDBC?*/
+    SaleDaoInterface saleDAO = new SaleDatabaseDAO();
     
     public Server() {
         port(8080);
         use(new Gzon());
         use(new ProductModule(productDao));
         use(new CustomerModule(customerDao));
+        use(new SaleModule(saleDAO));
         use(new AssetModule());
     }
     
