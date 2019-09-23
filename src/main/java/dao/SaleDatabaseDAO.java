@@ -26,12 +26,14 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
         try {
             try (
                     PreparedStatement insertOrderStmt = con.prepareStatement(
-                            "**** SQL for saving Sale goes here ****",
+                              "insert into SALE (SALEDATE. STATUS, CUSTOMERID) VALUES(?, ?, ?)",
                             Statement.RETURN_GENERATED_KEYS);
                     PreparedStatement insertOrderItemStmt = con.prepareStatement(
-                            "**** SQL for saving SaleItem goes here ****");
+                            "insert into SALE_ITEM (SALEPRICE, PRODUCT, QUANTITY) VALUES (?, ?, ?)");
                     PreparedStatement updateProductStmt = con.prepareStatement(
-                            "**** SQL for updating product quantity goes here ****");) {
+                            "UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - ? WHERE PRODUCTID = ?");) {
+                
+              
 
                 // since saving and order involves multiple statements across
                 // multiple tables we need to control the transaction ourselves
@@ -51,10 +53,9 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
                 LocalDate date = sale.getDate();
                 Timestamp timestamp = Timestamp.valueOf(date.atStartOfDay());
 
-                // ****
-                // write code here that saves the timestamp and username in the
-                // sale table using the insertOrderStmt statement.
-                // ****
+                 insertOrderStmt.setTimestamp(1, timestamp);
+                 insertOrderStmt.setString(3, sale.getCustomer().getCustomerId().toString());
+                 insertOrderStmt.executeUpdate();
                 // get the auto-generated order ID from the database
                 ResultSet rs = insertOrderStmt.getGeneratedKeys();
 
@@ -66,22 +67,18 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
                     throw new DAOException("Problem getting generated Order ID");
                 }
 
-                // ## save the order items ## //
                 Collection<SaleItem> items = sale.getItems();
 
-                // ****
-                // write code here that iterates through the order items and
-                // saves them using the insertOrderItemStmt statement.
-                // ****
-                // ## update the product quantities ## //
+                for(SaleItem item : items) {
+                    insertOrderItemStmt.setBigDecimal(1, item.getSalePrice());
+                    insertOrderItemStmt.setString(2, item.getProduct().toString());
+                    insertOrderItemStmt.setBigDecimal(3, item.getQuantityPurchased());
+                }
+
                 for (SaleItem item : items) {
-
                     Product product = item.getProduct();
-
-                    // ****
-                    // write code here that updates the product quantity using
-                    // the using the updateProductStmt statement.
-                    // ****
+                    updateProductStmt.setBigDecimal(1, item.getQuantityPurchased());
+                    updateProductStmt.setString(2, product.getProductId());
                 }
 
                 // commit the transaction

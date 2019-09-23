@@ -7,6 +7,7 @@ package web;
 
 
 import dao.SaleDaoInterface;
+import dao.SaleDatabaseDAO;
 import domain.Sale;
 import org.jooby.Jooby;
 import org.jooby.Status;
@@ -17,12 +18,12 @@ import org.jooby.Status;
  */
 public class SaleModule extends Jooby {
     
-   // SaleDAO saleDao = new SaleDAO();
+    SaleDaoInterface saleDao = new SaleDatabaseDAO();
     
     public SaleModule(SaleDaoInterface dao) {
         post("/api/sales", (req, rsp) -> {           
             Sale sale = req.body().to(Sale.class);
-            //saleDAO.save(sale);
+            //saleDao.save(sale);
             System.out.println(sale);
             System.err.println("complete sale module");
             rsp.status(Status.CREATED);
