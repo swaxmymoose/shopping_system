@@ -147,6 +147,11 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
         });
     };
     
+    this.signOut = function() {
+        delete $sessionStorage.customer;
+        $window.location.href ='index.html';
+    }
+    
     //alias 'this' so that we can access it inside callback functions
     let ctrl = this;
     this.signIn = function(username, password) {
