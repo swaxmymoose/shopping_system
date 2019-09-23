@@ -17,7 +17,7 @@ import dao.*;
 public class Server extends Jooby {
     
     ProductDaoInterface productDao = new ProductDatabaseDAO();
-    CustomerDaoInterface customerDao = new CustomerCollectionsDAO(); /*shoukd this change to JDBC?*/
+    CustomerDaoInterface customerDao = new CustomerDatabaseDAO();
     SaleDaoInterface saleDAO = new SaleDatabaseDAO();
     
     public Server() {
