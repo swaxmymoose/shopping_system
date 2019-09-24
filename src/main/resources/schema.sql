@@ -29,7 +29,7 @@ create table Customer (
 );
 
 create table Sale (
-     saleId integer primary key auto_increment,
+     saleId integer primary key auto_increment, 
      date TIMESTAMP not null,
      status varchar(10),
      customerId integer,
@@ -41,8 +41,8 @@ create table SaleItem (
     salePrice decimal(10,2) not null,
     productId varchar(50) not null,
     quantity integer not null,
-    SaleId integer,
-    constraint SaleItem_SaleId_FK foreign key (SaleId) references Sale,
+    saleId integer not null,
+    constraint SaleItem_SaleId_FK foreign key (saleId) references Sale,
     constraint SaleItem_ProductId_FK foreign key (productId) references Product,
     constraint SaleItem_PK primary key (SaleId, productId)
 );
