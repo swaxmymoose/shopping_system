@@ -26,10 +26,10 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
         try {
             try (
                     PreparedStatement insertOrderStmt = con.prepareStatement(
-                              "insert into SALE (SALEDATE. STATUS, CUSTOMERID) VALUES(?, ?, ?)",
+                              "insert into SALE (DATE, STATUS, CUSTOMERID) VALUES(?, ?, ?)",
                             Statement.RETURN_GENERATED_KEYS);
                     PreparedStatement insertOrderItemStmt = con.prepareStatement(
-                            "insert into SALE_ITEM (SALEPRICE, PRODUCT, QUANTITY) VALUES (?, ?, ?)");
+                            "insert into SALEITEM (SALEPRICE, PRODUCTID, QUANTITY) VALUES (?, ?, ?)");
                     PreparedStatement updateProductStmt = con.prepareStatement(
                             "UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - ? WHERE PRODUCTID = ?");) {
                 
@@ -54,7 +54,8 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
                 Timestamp timestamp = Timestamp.valueOf(date.atStartOfDay());
 
                  insertOrderStmt.setTimestamp(1, timestamp);
-                 insertOrderStmt.setString(3, sale.getCustomer().getCustomerId().toString());
+                 insertOrderStmt.setString(2, sale.getStatus());
+                 insertOrderStmt.setInt(3, customer.getCustomerId());
                  insertOrderStmt.executeUpdate();
                 // get the auto-generated order ID from the database
                 ResultSet rs = insertOrderStmt.getGeneratedKeys();
@@ -74,12 +75,15 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
                     insertOrderItemStmt.setString(2, item.getProduct().toString());
                     insertOrderItemStmt.setBigDecimal(3, item.getQuantityPurchased());
                 }
+                insertOrderItemStmt.executeUpdate();
 
                 for (SaleItem item : items) {
                     Product product = item.getProduct();
                     updateProductStmt.setBigDecimal(1, item.getQuantityPurchased());
                     updateProductStmt.setString(2, product.getProductId());
                 }
+                updateProductStmt.executeUpdate();
+                
 
                 // commit the transaction
                 con.setAutoCommit(true);

@@ -40,8 +40,8 @@ and open the template in the editor.
                     <td>{{cartCtrl.selectedProduct.name}}</td>
                     <td>{{cartCtrl.selectedProduct.description}}</td>
                     <td>{{cartCtrl.selectedProduct.category}}</td>
-                    <td>{{cartCtrl.selectedProduct.listPrice}}</td>
-                    <td>{{cartCtrl.selectedProduct.quantityInStock}}</td>
+                    <td>{{cartCtrl.selectedProduct.listPrice | currency}}</td>
+                    <td>{{cartCtrl.selectedProduct.quantityInStock | number}}</td>
                 </tr>
             </tbody>
         </table>

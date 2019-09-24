@@ -42,8 +42,8 @@ and open the template in the editor.
                     <td>{{product.name}}</td>
                     <td>{{product.description}}</td>
                     <td>{{product.category}}</td>
-                    <td>${{product.listPrice}}</td>
-                    <td>{{product.quantityInStock}}</td>
+                    <td>{{product.listPrice | currency}}</td>
+                    <td>{{product.quantityInStock | number}}</td>
                     <td><button ng-click="cartCtrl.buy(product)">Buy</button></td>
                 </tr>
             </tbody>
