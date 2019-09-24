@@ -24,7 +24,7 @@ and open the template in the editor.
         <div ng-include="'menu.html'"></div>
         
         <h1>Shopping Cart</h1>
-        <table class="table">
+        <table class="table" ng-if="cartCtrl.totalPrice <= 0">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -46,7 +46,8 @@ and open the template in the editor.
         <div  class="text-center">
           <h1 class="display-4">Total Cost</h1>
           <p class="lead">{{cartCtrl.totalPrice | currency}}</p>
-          <button ng-click="cartCtrl.checkOutCart()">Check Out Cart</button>
+          <button ng-if="!cartCtrl.totalPrice <= 0" ng-click="cartCtrl.checkOutCart()">Check Out Cart</button>
+          <p ng-if="cartCtrl.totalPrice <= 0">Cart empty</p> 
         </div>
       </div>
 
