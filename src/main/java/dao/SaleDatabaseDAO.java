@@ -29,7 +29,7 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
                               "insert into SALE (DATE, STATUS, CUSTOMERID) VALUES(?, ?, ?)",
                             Statement.RETURN_GENERATED_KEYS);
                     PreparedStatement insertOrderItemStmt = con.prepareStatement(
-                            "insert into SALEITEM (SALEPRICE, PRODUCTID, QUANTITY) VALUES (?, ?, ?)");
+                            "insert into SALEITEM (SALEPRICE, PRODUCTID, QUANTITY, SALEID) VALUES (?, ?, ?, ?)");
                     PreparedStatement updateProductStmt = con.prepareStatement(
                             "UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - ? WHERE PRODUCTID = ?");) {
                 
@@ -74,6 +74,7 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
                     insertOrderItemStmt.setBigDecimal(1, item.getSalePrice());
                     insertOrderItemStmt.setString(2, item.getProduct().toString());
                     insertOrderItemStmt.setBigDecimal(3, item.getQuantityPurchased());
+                    insertOrderItemStmt.setString(4, sale.getSaleId());
                 }
                 insertOrderItemStmt.executeUpdate();
 
