@@ -9,6 +9,7 @@ package web;
 import dao.SaleDaoInterface;
 import dao.SaleDatabaseDAO;
 import domain.Sale;
+import java.time.LocalDate;
 import org.jooby.Jooby;
 import org.jooby.Status;
 
@@ -23,6 +24,8 @@ public class SaleModule extends Jooby {
     public SaleModule(SaleDaoInterface dao) {
         post("/api/sales", (req, rsp) -> {           
             Sale sale = req.body().to(Sale.class);
+            sale.setStatus("pending");       
+            sale.setDate(LocalDate.now());
             //saleDao.save(sale);
             System.out.println(sale);
             System.err.println("complete sale module");
