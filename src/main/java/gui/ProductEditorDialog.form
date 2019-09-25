@@ -135,9 +135,6 @@
       <Properties>
         <Property name="name" type="java.lang.String" value="txtProductName" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProductNameActionPerformed"/>
-      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -197,9 +194,6 @@
       <Properties>
         <Property name="name" type="java.lang.String" value="txtProductQuantityInStock" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProductQuantityInStockActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnProductSave">
       <Properties>
@@ -215,6 +209,9 @@
         <Property name="text" type="java.lang.String" value="Cancel"/>
         <Property name="name" type="java.lang.String" value="btnProductCancel" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductCancelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -73,11 +73,6 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         lblProductName.setText("Product Name:");
 
         txtProductName.setName("txtProductName"); // NOI18N
-        txtProductName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductNameActionPerformed(evt);
-            }
-        });
 
         txtProductDescription.setColumns(20);
         txtProductDescription.setRows(5);
@@ -98,11 +93,6 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         lblQuantityInStock.setText("Quantity in Stock:");
 
         txtProductQuantityInStock.setName("txtProductQuantityInStock"); // NOI18N
-        txtProductQuantityInStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductQuantityInStockActionPerformed(evt);
-            }
-        });
 
         btnProductSave.setText("Save");
         btnProductSave.setName("btnProductSave"); // NOI18N
@@ -114,6 +104,11 @@ public class ProductEditorDialog extends javax.swing.JDialog {
 
         btnProductCancel.setText("Cancel");
         btnProductCancel.setName("btnProductCancel"); // NOI18N
+        btnProductCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,13 +226,9 @@ public class ProductEditorDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
-    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductNameActionPerformed
-
-    private void txtProductQuantityInStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductQuantityInStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductQuantityInStockActionPerformed
+    private void btnProductCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnProductCancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
