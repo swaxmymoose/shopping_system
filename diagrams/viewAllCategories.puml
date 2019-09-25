@@ -1,0 +1,12 @@
+@startuml
+actor User<<actor>>
+participant "browse products web page" <<html>>
+participant "prodCtrl" <<Angular Controller>>
+participant "$resource"
+participant "Product Module" <<Java Object>>
+participant "productDAO" as dao <<DAO>>
+
+
+
+User -> d++ : clicks 'add product'
+@enduml
