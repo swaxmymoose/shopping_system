@@ -26,14 +26,12 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
         try {
             try (
                     PreparedStatement insertOrderStmt = con.prepareStatement(
-                              "insert into SALE (DATE, STATUS, CUSTOMERID) VALUES(?, ?, ?)",
+                            "insert into SALE (DATE, STATUS, CUSTOMERID) VALUES(?, ?, ?)",
                             Statement.RETURN_GENERATED_KEYS);
                     PreparedStatement insertOrderItemStmt = con.prepareStatement(
                             "insert into SALEITEM (SALEPRICE, PRODUCTID, QUANTITY, SALEID) VALUES (?, ?, ?, ?)");
                     PreparedStatement updateProductStmt = con.prepareStatement(
                             "UPDATE PRODUCT SET QUANTITYINSTOCK = QUANTITYINSTOCK - ? WHERE PRODUCTID = ?");) {
-                
-              
 
                 // since saving and order involves multiple statements across
                 // multiple tables we need to control the transaction ourselves
@@ -53,10 +51,10 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
                 LocalDate date = sale.getDate();
                 Timestamp timestamp = Timestamp.valueOf(date.atStartOfDay());
 
-                 insertOrderStmt.setTimestamp(1, timestamp);
-                 insertOrderStmt.setString(2, sale.getStatus());
-                 insertOrderStmt.setInt(3, customer.getCustomerId());
-                 insertOrderStmt.executeUpdate();
+                insertOrderStmt.setTimestamp(1, timestamp);
+                insertOrderStmt.setString(2, sale.getStatus());
+                insertOrderStmt.setInt(3, customer.getCustomerId());
+                insertOrderStmt.executeUpdate();
                 // get the auto-generated order ID from the database
                 ResultSet rs = insertOrderStmt.getGeneratedKeys();
 
@@ -70,21 +68,20 @@ public class SaleDatabaseDAO implements SaleDaoInterface {
 
                 Collection<SaleItem> items = sale.getItems();
 
-                for(SaleItem item : items) {
+                for (SaleItem item : items) {
                     insertOrderItemStmt.setBigDecimal(1, item.getSalePrice());
-                    insertOrderItemStmt.setString(2, item.getProduct().toString());
+                    insertOrderItemStmt.setString(2, item.getProduct().getProductId());
                     insertOrderItemStmt.setBigDecimal(3, item.getQuantityPurchased());
-                    insertOrderItemStmt.setString(4, sale.getSaleId());
+                    insertOrderItemStmt.setInt(4, orderId);
+                    insertOrderItemStmt.executeUpdate();
                 }
-                insertOrderItemStmt.executeUpdate();
 
                 for (SaleItem item : items) {
                     Product product = item.getProduct();
                     updateProductStmt.setBigDecimal(1, item.getQuantityPurchased());
                     updateProductStmt.setString(2, product.getProductId());
+                    updateProductStmt.executeUpdate();
                 }
-                updateProductStmt.executeUpdate();
-                
 
                 // commit the transaction
                 con.setAutoCommit(true);

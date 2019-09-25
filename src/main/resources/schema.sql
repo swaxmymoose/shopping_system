@@ -41,7 +41,7 @@ create table SaleItem (
     salePrice decimal(10,2) not null,
     productId varchar(50) not null,
     quantity integer not null,
-    saleId integer not null,
+    saleId integer,
     constraint SaleItem_SaleId_FK foreign key (saleId) references Sale,
     constraint SaleItem_ProductId_FK foreign key (productId) references Product,
     constraint SaleItem_PK primary key (SaleId, productId)
