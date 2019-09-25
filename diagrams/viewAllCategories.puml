@@ -1,12 +1,26 @@
 @startuml
 actor User<<actor>>
-participant "browse products web page" <<html>>
-participant "prodCtrl" <<Angular Controller>>
-participant "$resource"
-participant "Product Module" <<Java Object>>
+participant "browse products web page" as page<<HTML>>
+participant "product controller" as prodCtrl<<Angular Controller>>
+participant "$resource" as resource
+participant "Product Module" as module <<Java Object>>
 participant "productDAO" as dao <<DAO>>
 
 
 
-User -> d++ : clicks 'add product'
+User -> page++: clicks "all categories" button
+page -> prodCtrl++: selectAllCategories()
+prodCtrl -> resource++: query()
+resource -> module++: get "api/product"
+module -> dao++: getProducts()
+dao -> dao: hits database/collection
+dao-->module: Java Product Object
+dao--
+module --> resource: JS object
+module--
+resource --> prodCtrl: JS object
+resource--
+prodCtrl --> page: JS object
+prodCtrl--
+dao--
 @enduml
