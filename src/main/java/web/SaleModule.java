@@ -35,14 +35,14 @@ public class SaleModule extends Jooby {
             saleDao.save(sale);
             System.out.println(sale);
             rsp.status(Status.CREATED);
-            CompletableFuture.runAsync(() -> {
+            /*CompletableFuture.runAsync(() -> {
                 try {
                     sendConfirmationEmail(sale);
                 }catch(EmailException e) {
                     e.printStackTrace();
                     rsp.status(Status.SERVER_ERROR);
                 }
-            });
+            });*/
         });      
     }
     

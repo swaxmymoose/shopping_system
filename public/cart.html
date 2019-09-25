@@ -46,9 +46,8 @@ and open the template in the editor.
         <div  class="text-center">
           <h1 class="display-4">Total Cost</h1>
           <p class="lead">{{cartCtrl.totalPrice | currency}}</p>
-          <button ng-if="this.cartCtrl.totalPrice >= 0" ng-click="cartCtrl.checkOutCart()">Check Out Cart</button>
+          <button ng-if="this.cartCtrl.totalPrice > 0" ng-click="cartCtrl.checkOutCart()">Check out cart</button>
           <p ng-if="cartCtrl.totalPrice <= 0">Cart empty</p> 
-          <p ng-if="custCtrl.signedIn">signed in</p> 
         </div>
       </div>
 

@@ -169,12 +169,11 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
             ctrl.signInMessage ='Sign in failed. Please try again.';
         });
     };
-    
+    this.singedIn =
     this.checkSignIn = function () {
         // has the customer been added to the session?
         if ($sessionStorage.customer) {
             this.signedIn = true;
-            alert(this.signedIn);
             
             let today = (new Date()).getDay();
             //today == 0 ? "Monday" : today == 1 ? "Tuesday" : today == 2 ? "Wednesday" : today == 3 ? "Thursday" : today == 4 : "Friday" : today == 5 ? "Saturday" : today == 6 ? "Sunday"
@@ -204,7 +203,6 @@ module.controller('CustomerController',function(registerDAO, signInDAO, $session
             this.welcome = "Welcome " + $sessionStorage.customer.firstName + ", we hope you are having a MEGA " + today;
         } else {
             this.signedIn = false;
-            alert(this.signedIn);
         }
     };
 });
